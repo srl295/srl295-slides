@@ -241,6 +241,7 @@ Discuss best practices around
 - Social: @srl295
 - Email: srloomis at us.ibm.com
 - Slides/Contact @  http://ibm.biz/srloomis 
-- Node Intl WG:   github.com/nodejs/Intl 
+- Node Intl WG:   http://github.com/nodejs/Intl 
 
-.bottom[made with [remark.js](http://remarkjs.com)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2015-12-NodeInteractive)]
+
