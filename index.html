@@ -299,7 +299,9 @@ Discuss best practices around
 <script src="js/remark-latest.min.js">
 </script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+          sourceUrl: 'presentation.md'
+      });
     </script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js">
     </script>
