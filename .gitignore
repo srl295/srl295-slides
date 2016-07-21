@@ -1,0 +1,3 @@
+*.esproj/user.*
+node_modules
+*.esproj
