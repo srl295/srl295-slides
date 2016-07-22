@@ -8,7 +8,7 @@ class: center, middle, whitedrop
 
 .centersml[![Node Logo](img/Intl.png)]
 
-# Intl as in Internationalization
+# `Intl` as in Internationalization
 ### Tools for Global Node.js Applications
 &nbsp;
 #### Steven R. Loomis, IBM
@@ -18,251 +18,87 @@ Welcome to this presentation on Node internationalization
 
 # About me
 
+--
+- IBM Global Foundations Technology Team
+???
+We make the technologies and best practices IBM needs to support a global audience.
+--
+
+ - [Globalization Pipeline](https://developer.ibm.com/open/ibm-bluemix-globalization-pipeline-service/)
+???
+I work on our Globalization Pipeline service which is just out of Beta
+this month, and a number of technologies which I'll be discussing today including
+--
+
+- [Unicode](http://unicode.org)
+???
+--
+
+ - Rep: [Unicode TC](http://unicode.org/consortium/utc.html)
+ - Chair: [ULI-TC](http://unicode.org/uli)
+ - Participant: [CLDR-TC](http://unicode.org/cldr) 
+???
+--
+
+ - Participant: [ICU-TC](http://icu-project.org) (IBM’s lead for C/C++)
+???
+I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
+--
+
+- Node
+  - [Intl WG](https://github.com/nodejs/Intl) Facilitator
+  - CTC Observer
+
 ---
 
 # Agenda
 
----
-
-# History of ECMA-402
-
----
-
-# Unicode in Node
-
----
-
-# Intl API
- # Intl.Collator
- # Intl.DateTimeFormat
- # Intl.NumberFormat
+- Background of Intl in node
+- APIs
+- Future
+- Libraries
+- Front-end, IoT
+- Q&A
 
 ---
 
-# Other APIs (String,etc)
+# ECMA-262/ECMA-402
 
----
+- ECMA-262: ECMAScript language
+ - Often called JavaScript
+ - Specifies Unicode text even in 1st ed (1997)
+- [ECMA-402](https://github.com/tc39/ecma402): `Intl` API
+ - _Optional_
+ - 1st Ed. 2010… 3rd Ed 2016
 
-# Intl history 2012…2016
-
----
-
-# Intl working group
-
----
-
-# ECMA-402 process
-
----
-
-# EMCA-402 future
-
----
-
-# Challenges
-
----
-
-# Node libraries
-
----
-
-# The front-end landscape
-
----
-
-# The IoT landscape
-
----
-layout: false
-
-# Thanks/Q&A
-
-- Social: @srl295
-- Email: srloomis `@` us.ibm.com
-- Slides/Contact @  https://srl295.github.io 
-- Node Intl WG:   http://github.com/nodejs/Intl 
-
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-07-NodeSummit)]
-
----
-
-
-# `whoami`
-
-- IBM Global Foundations Technology Team
-???
-I’ve been a part of this group for about 20 years. 
-
-The name is new but the team is not. We research, design, and create standards-based technologies 
-and best practices IBM needs to rapidly deploy solutions to a global audience.
-And in order to do so I am…
---
-
-- IBM’s [ICU4C](http://icu-project.org) lead
-???
-… the technical lead for the International Components for Unicode for C/C++ as well as
---
-
-- Rep: [Unicode TC](http://unicode.org) / Chair: [ULI-TC](http://unicode.org/uli) / [CLDR](http://unicode.org/cldr)
-???
-IBM's primary rep to the Unicode TC, chair of the Localization Interoperability TC,
-and member of the Common Locale Data Repository.
-But specific to this group, I am the
---
-
-- Node [Intl WG](https://github.com/nodejs/Intl) Facilitator
-???
-Facilitator of the Intl working group
---
-
-- [Globalization Pipeline](https://www.ng.bluemix.net/docs/services/GlobalizationPipeline/index.html) on Bluemix
-???
-I also work on a new product called the Globalization Pipeline, you can try it
-out in beta on Bluemix
---
-
----
-
-# 2010: [ECMA-402 1st ed.](http://www.ecma-international.org/ecma-402/1.0/)
-???
-ECMA-402 is the Internationalization API - as distinct from
-ECMA-262 which is the ECMAScript (or JavaScript) language
---
-
-- IETF BCP 47 Language Tag ( en-US vs. fr-CH …) 
-- Collation (sorting)
-- Number Format (1,234.56 vs 1.234,56)
-- Date Format (Oct 28, 2015 vs 10 de oct. de 2015)
---
-
-- Support in Chrome, Firefox, IE/Edge, Opera. 
-???
-Did I miss any platforms?
---
-
-- WebKit (Safari) [WIP](http://bit.ly/WebKitIntl)
-???
-Thank you Andy Van Wagoner
----
-
-# 2015: 2nd ed
-
-- Editorial
-- Array.toLocaleString()
---
-
-- https://github.com/tc39/ecma402
-???
-Standards Development moves to GitHub
----
-
-# “`Intl`”
-???
-Why do we call this Intl?
---
-
-- Global object Intl:
- - `Intl.Collator` (sorting)
---
-
- - `Intl.DateTimeFormat`
---
-
- - `Intl.NumberFormat`
---
-
-- Other objects:
- - `Date().toLocaleString()`
---
-
- - `Number().toLocaleString()`
---
-
- - `"abc".localeCompare("ábc")`
---
-
- - `"u¨".normalize("NFC")			=== "ü"`
---
-
- - `"i".toLocaleUpperCase()` / `"I".toLocaleLowerCase()` (not implemented fully)
-???
-Needed for Turkish, not implemented yet.
 ---
 
 # Intl in Node.js
 
-- 2012: ECMA-402 standardized. Google v8-i18n project starts.
---
-
-- 2013: v8-i18n integrated into v8 codebase
---
-
-- 2014: Available as a compile option in node.js. Packaging work merged into v0.12 branch.
---
-
-- 2015 Feb 6: “Intl” enabled in node.js [v0.12](http://blog.nodejs.org/2015/02/06/node-v0-12-0-stable/) downloads!
---
-
-- (io.js fork didn’t include Intl between 1.0.0 and 3.0.x… 
---
-
-- … but reappeared in 3.1.0!)
---
-
-- 2015 October:Experimental `full-icu` npm module / discussion about auto discovery [#3460](https://github.com/nodejs/node/issues/3460)
----
-
-# Node Intl “Stack”
-
-- node (You are here)
---
-
-- v8
---
-
-- [ICU](http://icu-project.org) (Implements Unicode/Formatting functions)
---
-
-- [CLDR](http://unicode.org/cldr) (Source of data to drive formatting/collating)
----
-
-# Intl WG
-
-- https://github.com/nodejs/Intl
-.gftt[![Intl Logo](img/Intl.png)]
---
-
-- First Meeting: August 11, 2015
---
-
-- Scope:
-  - Functionality &amp; compliance (standards: ECMA, Unicode…)
-???
-Ecma402 editor a member
---
-
-  - Support for Globalization and Internationalization issues that come up in the tracker
---
-
-  - Guidance and Best Practices
---
-
-  - Refinement of existing Intl implementation
-???
-Like to thank the community…
-Challenges
-Getting acquainted with a new community
-GitHub, IRC, introductions, face to face at conferences… all help.
+- Unicode support / `Intl` implementation from v8
+ - Uses [ICU](http://icu-project.org)
+- 2015: v0.12+ downloads: `Intl` available by default
+- 2016: v6.x+: source tree builds `Intl` by default.
+- (English by default for space)
 
 ---
 
-# How do you use the Intl features
+# API
 
-- Download Node 0.12+
-???
-(of course, you want to use 4.2 LTS or 5…
---
+## `Intl`
+- `Intl.Collator`
+- `Intl.DateTimeFormat`
+- `Intl.NumberFormat`
+
+## Other Objects
+ - `Date().toLocaleString()`
+ - `Number().toLocaleString()`
+ - `"abc".localeCompare("ábc")`
+ - `"u¨".normalize("NFC")			=== "ü"`
+ - `"i".toLocaleUpperCase()` / `"I".toLocaleLowerCase()` (not implemented fully)
+---
+
+# Using the API
 
 - Use `.toLocaleString()` instead of `.toString()` on `Number` and `Date`
 --
@@ -273,40 +109,87 @@ GitHub, IRC, introductions, face to face at conferences… all help.
 - visit MDN Intl: 
 .shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
 ???
-A great resource
+
+--
+
+- `npm install full-icu` to get full data, or rebuild Node.
+
 ---
 
-# What’s next for ECM402?
+# Intl working group
 
-- https://github.com/tc39/ecma402/
---
+https://github.com/nodejs/Intl
+.gftt[![Intl Logo](img/Intl.png)]
+- Functionality &amp; compliance (standards: ECMA, Unicode…)
+- Support for Globalization and Internationalization issues that come up in the tracker
+- Guidance and Best Practices
+- Refinement of existing Intl implementation
 
-- 3rd edition: 2016?
---
-
-- Possible features:
- - Plural rules
- - Units
- - Locale services
- - Unicode data
- - Regex improvements
- - Token formatting
 ---
 
-# What's next for the Intl WG?
+# ECMA-402 process
 
-- Improve documentation
---
+- Collaborate: https://github.com/tc39/ecma402/
 
-- Make it easier to locate full ICU support (not just English) [#3460](https://github.com/nodejs/node/issues/3460)
---
+---
 
-- Localization for Node and modules
-???
-Discuss best practices around 
---
+# EMCA-402 future
 
-- Outreach to user communities
---
+## General trend: 
+- “low level” support vs “high level” formatters
 
-- Data packaging / loading
+## Upcoming:
+- Format to Parts
+- Plural Rules
+- Locale Info
+
+---
+
+# Challenges/What's next
+
+- data size/ stability
+ - even better discoverability
+- ECMA compliance
+- documentation and best practices
+
+---
+
+# Node libraries
+
+- [g11n-pipeline](https://github.com/IBM-Bluemix/gp-js-client)
+ - load translations from RESTful service
+```
+mybundle.getStrings({ languageId: 'es'}, …)
+    => { hello: '¡hola!', goodbye: '¡adiós!' }
+```
+ - [Intl.js](https://github.com/andyearnshaw/Intl.js)
+  - polyfill of latest ECMA-402 features
+ - [cldr.js](https://github.com/rxaviers/cldrjs)
+  - access to full CLDR data
+
+
+---
+
+# The front-end landscape
+
+- In July 2016 - pretty good
+ - `Intl` support in "most" browsers (if you count Safari Tech Preview)
+
+---
+
+# The IoT landscape
+
+- node builds tested with cross-platform build
+- build node with `--without-intl` (pre v.6: `--with-intl=none`) to disable Intl
+
+---
+layout: false
+
+# Thanks/Q&A
+
+- Social: @srl295
+- Email: `srloomis` <i>@</i>  `us.ibm.com`
+- Slides/Contact:  https://srl295.github.io 
+- Node Intl WG:   http://github.com/nodejs/Intl 
+
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-07-NodeSummit)]
