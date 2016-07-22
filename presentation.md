@@ -143,6 +143,12 @@ https://github.com/nodejs/Intl
 - Plural Rules
 - Locale Info
 
+## In the Future:
+- MessageFormat and other Formatters
+???
+
+TODO:  add one liners explaining FTP and why MessageFormat is future
+
 ---
 
 # Challenges/What's next
