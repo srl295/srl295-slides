@@ -78,8 +78,15 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 # Intl in Node.js
 
 - Unicode support / `Intl` implementation from v8
- - Uses [ICU](http://icu-project.org)
- - (English by default for space)
+--
+
+.centersml[![Node Logo](img/heavybooks.jpg)]
+--
+
+ - C++: [ICU](http://icu-project.org) 
+--
+
+ - [CLDR](http://unicode.org/cldr) data (English by default for space)
 --
 
 - 2015: v0.12+ downloads: `Intl` available by default
@@ -281,6 +288,10 @@ mybundle.getStrings({ languageId: 'es'}, …)
 
 - node builds tested with cross-platform build
 - build node with `--without-intl` (pre v.6: `--with-intl=none`) to disable Intl
+--
+
+ - more and more features turned off without ICU
+--
 
 ---
 layout: false
