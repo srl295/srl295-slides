@@ -23,7 +23,11 @@ class: center, middle, whitedrop
 
 ## _“i18n becoming increasingly important to the global adoption of Node.js”_
 
-—Rod Vagg (@rvagg), yesterday
+—
+--
+Rod Vagg (@rvagg)
+--
+, yesterday
 ---
 
 # About me
@@ -201,14 +205,20 @@ and friends
 # Locale Parameter
 
 --
+
 - `new Date().toLocaleDateString()` // "default"
 
+
 --
+
 - `new Date().toLocaleDateString('es-US')` // "Hard Coded Locale"
 
 --
 
-- Server Side?
+- 
+--
+Server Side?
+
 ???
 But we're about servers here, so…
 --
@@ -262,8 +272,7 @@ Houston, we have sticker shock
 
  - 25 MiB binary
 --
-
- - English only
+, English only
 --
 
  - full APIs
@@ -290,7 +299,7 @@ I guess Pythons download ICU’s full source
 grab yourself a ${BEVERAGE}
 --
 
- - Full ICU data support, baked in
+ - Full ICU data support, baked in 🍰
 ---
 
 # Intl working group
