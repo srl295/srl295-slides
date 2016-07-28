@@ -23,14 +23,14 @@ class: center, middle, whitedrop
 
 ## _“i18n becoming increasingly important to the global adoption of Node.js”_
 
-—
+### —
 --
 Rod Vagg (@rvagg)
 --
 , yesterday
 ---
 
-# About me
+# About This Person…
 
 --
 - IBM Global Foundations Technology Team
@@ -54,9 +54,13 @@ this month, and a number of technologies which I'll be discussing today includin
 ???
 --
 
- - Participant: [ICU-TC](http://icu-project.org) (IBM’s lead for C/C++)
+ - Participant: [ICU-TC](http://icu-project.org)
+--
+<br><small>International Components for Unicode</small> 
+--
+<br><small>(IBM’s lead for C/C++)</small>
 ???
-I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
+ we will discuss more
 --
 
 - Node
@@ -67,12 +71,12 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 
 # Agenda
 
-- Background of Intl in node
-- APIs
-- Future
-- Libraries
-- Front-end, IoT
-- Q&A
+- What is `Intl`?
+- How do I get it?
+- How do I use it?
+- Where is it going?
+- Are there other options?
+- What about Front-end and IoT
 
 ---
 
@@ -107,8 +111,6 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 --
 
 - 2016: v6.x+: source tree builds `Intl` by default.
---
-
 
 ---
 
@@ -241,6 +243,9 @@ background-image: url(img/heavybooks.jpg)
 
 # Data Size
 
+???
+Several pounds of Unicode and linguistic resources.
+Did not bring these in my backpack.
 ---
 
 # Data Size
@@ -267,7 +272,9 @@ Houston, we have sticker shock
 - Download from https://nodejs.org
 --
 
-- Or `configure` from the repo `:+1:`
+- Or `configure` from the repo
+--
+ `:+1:`
 --
 
  - 25 MiB binary
@@ -299,18 +306,27 @@ I guess Pythons download ICU’s full source
 grab yourself a ${BEVERAGE}
 --
 
- - Full ICU data support, baked in 🍰
+ - Full ICU data support, baked in 
+--
+🍰
 ---
 
 # Intl working group
 
 https://github.com/nodejs/Intl
 .gftt[![Intl Logo](img/Intl.png)]
-- Functionality &amp; compliance (standards: ECMA, Unicode…)
-- Support for Globalization and Internationalization issues that come up in the tracker
-- Guidance and Best Practices
-- Refinement of existing Intl implementation
+--
 
+- Functionality &amp; compliance (standards: ECMA, Unicode…)
+--
+
+- Support for Globalization and Internationalization issues that come up in the tracker
+--
+
+- Guidance and Best Practices
+--
+
+- Refinement of existing Intl implementation
 ---
 
 # ECMA-402 process
@@ -319,15 +335,12 @@ https://github.com/nodejs/Intl
 --
 
 - Collaborate: https://github.com/tc39/ecma402/
-
 ---
 
 # ECMA-402 future
 
 ## General trend: 
 - “low level” support vs “high level” formatters
---
-
 ---
 
 ## ECMA-402 Upcoming:
@@ -394,7 +407,7 @@ ki
 - data size/ stability
 --
 
- - [even better discoverability](https://github.com/nodejs/node/issues/3460)
+- <sup>*</sup>[even better discoverability](https://github.com/nodejs/node/issues/3460)
 --
 
 <pre>$ npm install full-icu
@@ -411,8 +424,11 @@ $ node</pre>
 
 # Node libraries
 
-- [g11n-pipeline](https://github.com/IBM-Bluemix/gp-js-client)
- - load translations from RESTful service
+???
+Intl API does not deal with messages / resources
+--
+
+- [g11n-pipeline](https://github.com/IBM-Bluemix/gp-js-client) — _REST service for translation_
 --
 
 ```js
@@ -420,22 +436,40 @@ mybundle.getStrings({ languageId: 'es'}, …)
     => { hello: '¡hola!', goodbye: '¡adiós!' }
 ```
 --
- - [Intl.js](https://github.com/andyearnshaw/Intl.js)
-   polyfill of latest ECMA-402 features
- - [cldr.js](https://github.com/rxaviers/cldrjs)
-   access to full CLDR data
+
+- [Intl.js](https://github.com/andyearnshaw/Intl.js)
+   — _latest ECMA-402 features_
 --
 
- - [strong-globalize](https://www.npmjs.com/package/strong-globalize)
+- [cldr.js](https://github.com/rxaviers/cldrjs)
+   — _access to full CLDR data_
+--
 
+
+- [strong-globalize](https://www.npmjs.com/package/strong-globalize)
+   — _tools for globalizing JS code and HTML templates_
+???
+Tetsuo Seto, built on top of g11n-pipeline
 ---
 
 # The front-end landscape
+--
 
-- … as of July 2016, not to bad `:+1:`
+- … as of July 2016, not to bad
+--
+ `:+1:`
+--
+
  - `Intl` support in _all_ browsers
 --
  (if you count Safari Tech Preview)
+???
+which I do
+--
+
+- go use `Intl`
+--
+ (+ polyfills) 
 ---
 
 # The IoT landscape
@@ -445,8 +479,6 @@ mybundle.getStrings({ languageId: 'es'}, …)
 --
 
  - more and more features turned off without ICU
---
-
 ---
 layout: false
 
@@ -455,7 +487,7 @@ layout: false
 - Social: @srl295
 - Slides/Contact:  https://git.io/srl295
 - Email: `srloomis` <i>@</i>  `us.ibm.com`
-- Mozilla Dev Network- Intl: 
+- Mozilla MDN Intl: 
 .shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
 - Node Intl WG:   http://github.com/nodejs/Intl 
 
