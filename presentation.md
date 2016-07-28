@@ -14,6 +14,13 @@ class: center, middle, whitedrop
 #### Steven R. Loomis, IBM
 ???
 Welcome to this presentation on Node internationalization
+I'd like to start with a quote
+---
+class: center, middle, whitedrop
+
+## _“i18n becoming increasingly important to the global adoption of Node.js”_
+
+—Rod Vagg (@rvagg), yesterday
 ---
 
 # About me
@@ -145,6 +152,10 @@ use of these facilities though. Some familiar players have been extended also.
 - ~~`Date().toString()`~~
 --
 
+- `Date().toLocaleString()`
+???
+and friends
+--
 
 <pre class='i18n-dates' ></pre>
 ---
@@ -156,7 +167,7 @@ use of these facilities though. Some familiar players have been extended also.
 --
 
 
-<tt class='i18n-numbers' ></tt>
+<pre class='i18n-numbers' ></pre>
 
 ---
 
@@ -229,6 +240,9 @@ https://github.com/nodejs/Intl
 ---
 
 # ECMA-402 process
+
+- TC39 meeting at this instance
+--
 
 - Collaborate: https://github.com/tc39/ecma402/
 

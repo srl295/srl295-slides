@@ -15,6 +15,11 @@ var NUM_LOCLIST = [
     'mn-u-nu-mong',
     'ja-u-nu-hant'
 ];
+var NUM_LOCLIST_PCT = [
+    'en',
+    'fr',
+    'ar'
+];
 
 // 
 $(function() {
@@ -31,12 +36,17 @@ $(function() {
     var n =0;
     var doWhat = function() {
         n++;
+        var loc = NUM_LOCLIST[n%NUM_LOCLIST.length];
+        var locp = NUM_LOCLIST_PCT[n%NUM_LOCLIST_PCT.length];
         // console.log(n);
         forea('.i18n-numbers', function(x) {
             if(x) {
-                $(x).text(doEval(
-                    "new Number(2016).toLocaleString('"+NUM_LOCLIST[n%NUM_LOCLIST.length]+"')"
-                ));
+                $(x).text(doEval([
+                    "new Number(2016).toLocaleString()",
+                    "new Number(1.12).toLocaleString('"+locp+"', {style: 'percent'})",
+                    "new Number(2016).toLocaleString('"+loc+"')",
+                    "new Number(2016).toLocaleString('"+loc+"',\n {useGrouping: false})"
+                ]));
             } 
         });
     };
@@ -88,7 +98,15 @@ $(function() {
 });
 
 function doEval(x) {
-    return x+ ' //' + eval(x);
+    if(Array.isArray(x)) {
+        var out = '';
+        x.forEach(function(element) {
+            out = out + doEval(element) + '\n';
+        }, this);
+        return out;
+    } else {
+        return x+ ' //' + eval(x);
+    }
 };
 
 
