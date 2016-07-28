@@ -13,6 +13,9 @@ class: center, middle, whitedrop
 &nbsp;
 #### Steven R. Loomis, IBM
 ???
+NOTE: Hey you, yeah you! An `Intl` capable browser is needed.
+I use Safari Tech Preview. 
+
 Welcome to this presentation on Node internationalization
 I'd like to start with a quote
 ---
@@ -87,7 +90,7 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 - Unicode support / `Intl` implementation from v8
 --
 
-.centersml[![Node Logo](img/heavybooks.jpg)]
+.centersml[![Heavy Books](img/heavybooks.jpg)]
 --
 
  - C++: [ICU](http://icu-project.org) 
@@ -223,9 +226,71 @@ http.createServer(function(req, res) {
  -  https://github.com/nodejs/Intl/issues/10
 
 ---
+class: center, ultrawhitedrop
+background-image: url(img/heavybooks.jpg)
 
-- `npm install full-icu` to get full data, or rebuild Node.
+# Data Size
 
+---
+
+# Data Size
+
+* `node`
+--
+
+ - about 25 MiB
+--
+
+* ICU’s locale data
+--
+
+ - for 200 languages
+--
+
+ - about 25 MiB
+???
+Houston, we have sticker shock
+---
+
+# Packaging
+
+- Download from https://nodejs.org
+--
+
+- Or `configure` from the repo `:+1:`
+--
+
+ - 25 MiB binary
+--
+
+ - English only
+--
+
+ - full APIs
+???
+No extra download - ICU source included with Node.
+--
+
+- `npm install full-icu`
+--
+
+ - wombats download extra 25 MiB
+--
+
+ - follow the directions*
+<pre>node --icu-data-dir=… app.js</pre>
+--
+
+ - Full ICU data support
+--
+
+- `./configure --with-intl=full-icu --download=all`
+???
+I guess Pythons download ICU’s full source
+grab yourself a ${BEVERAGE}
+--
+
+ - Full ICU data support, baked in
 ---
 
 # Intl working group
@@ -241,61 +306,124 @@ https://github.com/nodejs/Intl
 
 # ECMA-402 process
 
-- TC39 meeting at this instance
+- TC39 meeting at this instant
 --
 
 - Collaborate: https://github.com/tc39/ecma402/
 
 ---
 
-# EMCA-402 future
+# ECMA-402 future
 
 ## General trend: 
 - “low level” support vs “high level” formatters
+--
 
-## Upcoming:
-- Format to Parts
+---
+
+## ECMA-402 Upcoming:
+- [Format to Parts](https://github.com/tc39/ecma402/issues/30)
+--
+
+ - **July** 2016
+--
+ => `July` (Month), `2016` (Year)
+--
+
 - Plural Rules
+--
+
+ - ~~You have 0 friend(s)~~
+--
+
+ - **`one`** You have one friend
+--
+, **`other`** You have 0 friends
+--
+, **`other`** You have 16,777,216 friends
+--
+
+ - English: 0 dogs, 1 dog, 2 dogs, 3 dogs, 4 dogs
+--
+
+ - Welsh: 0 cŵn, 
+???
+kun
+--
+1 ci, 
+???
+ki
+--
+2 gi, 
+???
+--
+3 ci, 
+???
+--
+4 ci
+???
+--
+
 - Locale Info
+--
+
+ - Canonical Locales, Locale info
+--
+
+ - for building your own lookups
+
+---
 
 ## In the Future:
 - MessageFormat and other Formatters
 ???
-
-TODO:  add one liners explaining FTP and why MessageFormat is future
 
 ---
 
 # Challenges/What's next
 
 - data size/ stability
- - even better discoverability
-- ECMA compliance
-- documentation and best practices
+--
 
+ - [even better discoverability](https://github.com/nodejs/node/issues/3460)
+--
+
+<pre>$ npm install full-icu
+$ node</pre>
+???
+
+--
+
+- ECMA compliance testing
+--
+
+- documentation and best practices
 ---
 
 # Node libraries
 
 - [g11n-pipeline](https://github.com/IBM-Bluemix/gp-js-client)
  - load translations from RESTful service
-```
+--
+
+```js
 mybundle.getStrings({ languageId: 'es'}, …)
     => { hello: '¡hola!', goodbye: '¡adiós!' }
 ```
+--
  - [Intl.js](https://github.com/andyearnshaw/Intl.js)
-  - polyfill of latest ECMA-402 features
+   polyfill of latest ECMA-402 features
  - [cldr.js](https://github.com/rxaviers/cldrjs)
-  - access to full CLDR data
-
+   access to full CLDR data
 
 ---
 
 # The front-end landscape
 
-- In July 2016 - pretty good
- - `Intl` support in "most" browsers (if you count Safari Tech Preview)
-
+- … as of July 2016, not to bad `:+1:`
+ - `Intl` support in _all_ browsers
+--
+ (if you count Safari Tech Preview)
 ---
 
 # The IoT landscape
