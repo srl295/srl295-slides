@@ -31,7 +31,7 @@ $(function() {
     var n =0;
     var doWhat = function() {
         n++;
-        console.log(n);
+        // console.log(n);
         forea('.i18n-numbers', function(x) {
             if(x) {
                 $(x).text(doEval(
@@ -58,7 +58,7 @@ $(function() {
     function forea(x, y) {
         var a = $(x);
         if(!a || a.length === 0) {
-            console.log('None: ' + x);
+            // console.log('None: ' + x);
         } else {
             for(var k=0;k<x.length;k++) {
                 y(a[k]);
@@ -68,7 +68,7 @@ $(function() {
     var n =0;
     var doWhat = function() {
         n++;
-        console.log(n);
+        // console.log(n);
         forea('.i18n-dates', function(x) {
             if(x) {
                 $(x).text(doEval(
