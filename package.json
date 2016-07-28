@@ -1,0 +1,24 @@
+{
+  "name": "@srloomis.us.ibm.com/srl295-slides",
+  "version": "1.0.0",
+  "description": "My slides from Node Interactive PDX 2015",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srl295/srl295-slides.git"
+  },
+  "keywords": [],
+  "author": "Steven R. Loomis <srloomis@us.ibm.com> (https://srl295.github.io)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/srl295/srl295-slides/issues"
+  },
+  "homepage": "https://github.com/srl295/srl295-slides#readme",
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "jquery-ui": "^1.12.0"
+  }
+}

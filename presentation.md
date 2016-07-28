@@ -67,6 +67,8 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 - ECMA-262: ECMAScript language
  - Often called JavaScript
  - Specifies Unicode text even in 1st ed (1997)
+--
+
 - [ECMA-402](https://github.com/tc39/ecma402): `Intl` API
  - _Optional_
  - 1st Ed. 2010… 3rd Ed 2016
@@ -77,40 +79,132 @@ I'm IBM’s technical lead for the C/C++ side of ICU, which we will discuss more
 
 - Unicode support / `Intl` implementation from v8
  - Uses [ICU](http://icu-project.org)
+ - (English by default for space)
+--
+
 - 2015: v0.12+ downloads: `Intl` available by default
+--
+
 - 2016: v6.x+: source tree builds `Intl` by default.
-- (English by default for space)
+--
+
 
 ---
 
 # API
+???
+Let’s dig in to what the `Intl` APIs look like
+--
 
 ## `Intl`
-- `Intl.Collator`
-- `Intl.DateTimeFormat`
-- `Intl.NumberFormat`
+--
 
-## Other Objects
- - `Date().toLocaleString()`
- - `Number().toLocaleString()`
- - `"abc".localeCompare("ábc")`
- - `"u¨".normalize("NFC")			=== "ü"`
- - `"i".toLocaleUpperCase()` / `"I".toLocaleLowerCase()` (not implemented fully)
+- `new Intl.NumberFormat(…)` 
+???
+Formats Numbers
+--
+
+- `new Intl.DateTimeFormat(…)`
+???
+Formatting Dates
+--
+
+- `new Intl.Collator(…)`
+???
+Collating… and if you're not sure what this here's a hint
 ---
 
-# Using the API
-
-- Use `.toLocaleString()` instead of `.toString()` on `Number` and `Date`
---
-
-- Use `"foo".localeCompare("bar")` instead of &lt; / &gt; / ==
---
-
-- visit MDN Intl: 
-.shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
+# [IBM 77 Collator](https://www-03.ibm.com/ibm/history/exhibits/vintage/vintage_4506VV4004.html)
+.centerbig[![IBM Collator](img/1024px-IBM_077_collator_at_CHM.agr.jpg)]
+###### By [ArnoldReinhold](https://commons.wikimedia.org/wiki/File:IBM_077_collator_at_CHM.agr.jpg) (Own work) [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons
 ???
+This is one of IBM’s earlier collators, which put a deck of cards in correct sequence
+In 1937, we were a few years off from full Unicode support, but we did have globalization
+support pretty early on.
+---
+
+# Familiar Objects
+- `Date`
+- `Number`
+- `String`
+???
+You don't need to use the Intl object directly to make
+use of these facilities though. Some familiar players have been extended also.
+---
+
+# `Date`
+--
+
+- ~~`Date().toString()`~~
+--
+
+
+<pre class='i18n-dates' ></pre>
+---
+
+# `Number`
+--
+
+- ~~`Number().toString()`~~
+--
+
+
+<tt class='i18n-numbers' ></tt>
+
+---
+
+# `String`
+
+- ~~`'a' < 'b'`~~
+--
+
+- ~~`'a' === 'b'`~~
+--
+
+- ~~`'A'.toLowerCase() === 'a'.toLowerCase()`~~
+--
+
+- `"abc".localeCompare("ábc")`
+--
+
+- `"u¨".normalize("NFC")			=== "ü"`
+--
+
+- `"i".toLocaleUpperCase()` / `"I".toLocaleLowerCase()`
+--
+
+ - _coming soon to a v8 near you_
+ - API available today
+---
+
+# Locale Parameter
 
 --
+- `new Date().toLocaleDateString()` // "default"
+
+--
+- `new Date().toLocaleDateString('es-US')` // "Hard Coded Locale"
+
+--
+
+- Server Side?
+???
+But we're about servers here, so…
+--
+
+
+```js
+var Negotiator = require('negotiator');
+
+http.createServer(function(req, res) {
+  new Date().toLocaleDateString(new Negotiator(req).languages());
+});
+```
+--
+
+ -  https://github.com/nodejs/Intl/issues/10
+
+---
 
 - `npm install full-icu` to get full data, or rebuild Node.
 
@@ -194,8 +288,10 @@ layout: false
 # Thanks/Q&A
 
 - Social: @srl295
+- Slides/Contact:  https://git.io/srl295
 - Email: `srloomis` <i>@</i>  `us.ibm.com`
-- Slides/Contact:  https://srl295.github.io 
+- Mozilla Dev Network- Intl: 
+.shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
 - Node Intl WG:   http://github.com/nodejs/Intl 
 
 .bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-07-NodeSummit)]
