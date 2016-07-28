@@ -424,6 +424,9 @@ mybundle.getStrings({ languageId: 'es'}, …)
    polyfill of latest ECMA-402 features
  - [cldr.js](https://github.com/rxaviers/cldrjs)
    access to full CLDR data
+--
+
+ - [strong-globalize](https://www.npmjs.com/package/strong-globalize)
 
 ---
 
