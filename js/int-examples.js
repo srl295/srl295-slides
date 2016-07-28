@@ -75,7 +75,7 @@ $(function() {
                     "new Date().toLocaleString('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"')\n"
                 ) + '\n\n' +
                 doEval(
-                    "new Date().toLocaleDateString('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"',\n {month:'long', date: '2-digit', year: 'numeric'})\n"
+                    "new Date().toLocaleDateString('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"',\n {month:'long', day: 'numeric', year: 'numeric'})\n"
                 ) + '\n\n' +
                 doEval(
                     "new Date().toLocaleTimeString('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"')\n"
