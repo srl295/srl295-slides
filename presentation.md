@@ -1,6 +1,6 @@
 layout: true
 
-<div class="bottom">NodeSummit 2016 SF — <a href="https://srl295.github.io">@srl295</a></div>
+<div class="bottom">Intl@Fresnode • Aug 6, 2016 — <a href="https://srl295.github.io">@srl295</a></div>
 ---
 _background-image: url(img/node1.png)
 class: center, middle, whitedrop
@@ -8,8 +8,7 @@ class: center, middle, whitedrop
 
 .centersml[![Node Logo](img/Intl.png)]
 
-# `Intl` as in Internationalization
-### Tools for Global Node.js Applications
+# `Intl` at Fresnode • Aug 6, 2016
 &nbsp;
 #### Steven R. Loomis, IBM
 ???
