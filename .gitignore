@@ -1,3 +1,4 @@
 *.esproj/user.*
 node_modules
 *.esproj
+.DS_Store
