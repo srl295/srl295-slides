@@ -1,19 +1,27 @@
 layout: true
 
-<div class="bottom">Intl@Fresnode • Aug 6, 2016 — <a href="https://srl295.github.io">@srl295</a></div>
+<div class="bottom">40<sup>th</sup> Internationalization and Unicode Conference • Nov 3<sup>rd</sup>, 2016 — 
+<a href="https://srl295.github.io">@srl295</a></div>
 ---
 _background-image: url(img/node1.png)
 class: center, middle, whitedrop
 
 
-.centersml[![Node Logo](img/Intl.png)]
 
-# `Intl` at Fresnode • Aug 6, 2016
+.centersml[![Intl](img/Intl.png)]
+#  all the things 
 &nbsp;
 #### Steven R. Loomis, IBM
 ???
 NOTE: Hey you, yeah you! An `Intl` capable browser is needed.
-I use Safari Tech Preview. 
+I use Safari 10. 
+
+TITLE: Node.js: Intl all the things!
+
+ABSTRACT: 
+
+Node.js has become a popular platform, using JavaScript on the server, or in other environments outside of its traditional role in web browsers. This presentation will discuss challenges, lessons learned, and the latest status in enabling and making use of the Intl (EcmaScript-402) module support in Node.js, current status and what's next for JavaScript and Node.js globalization, and discuss techniques and best practices for Unicode and international support in Node.js applications.
+
 
 Welcome to this presentation on Node internationalization
 I'd like to start with a quote
