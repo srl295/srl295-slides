@@ -31,10 +31,7 @@ class: center, middle, whitedrop
 ## _“i18n becoming increasingly important to the global adoption of Node.js”_
 
 ### —
---
-Rod Vagg (@rvagg)
---
-, yesterday
+Rod Vagg (@rvagg), “The Future of Node.js”, July 2016
 ---
 
 # About This Person…
@@ -455,6 +452,7 @@ What are the valid locale ids? how do you process them?
 
 ## In the Future:
 - MessageFormat and other Formatters
+- BreakIterator (text segmentation)
 ???
 
 ---
@@ -520,16 +518,14 @@ IBM Storngloop, Tetsuo Seto, built on top of g11n-pipeline
 # The front-end landscape
 --
 
-- … as of July 2016, not to bad
+- … as of November 2016, great!
 --
  `:+1:`
 --
 
  - `Intl` support in _all_ browsers
---
- (if you count Safari Tech Preview)
 ???
-which I do, that's what is presenting this for you today
+Thanks Safari 10
 --
 
 - go use `Intl`
