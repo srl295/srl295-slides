@@ -280,10 +280,62 @@ madrugada - daybreak
 - [unicode.org/cldr/charts/latest/supplemental/day_periods.html](http://www.unicode.org/cldr/charts/latest/supplemental/day_periods.html)
 
 ---
-
+background-image: url(./img/unitwall2.svg)
 class: center, middle, whitedrop
 
 # Unit Context and Usage
+
+---
+
+# Problem: Which unit?
+
+--
+- Your destination is 85,008 yards away
+
+--
+  - 1.1439×10<sup>-5</sup> decades
+
+--
+(with traffic)
+
+--
+- 557 albums, 2,495,941,416 milliseconds of music ♫ 
+
+--
+- According to [Wikipedia](https://en.wikipedia.org/wiki/FFF_system#Speed_of_light), The speed of light is 1.8026×10<sup>12</sup> furlongs/fortnight.
+???
+What's happening here? These are all valid units,
+And they may be appropriate units in your region and language.
+---
+
+# Unit Context : Length
+
+    <unitPreferences category="length" usage="person">
+      <unitPreference regions="001">centimeter</unitPreference>
+      <unitPreference regions="AT BE DZ EG ES FR HK ID IL IT…">meter centimeter</unitPreference>
+      <unitPreference regions="US">inch</unitPreference>
+    </unitPreferences>
+
+--
+    <unitPreferences category="length" usage="rainfall">
+      <unitPreference regions="001">millimeter</unitPreference>
+      <unitPreference regions="BR">centimeter</unitPreference>
+      <unitPreference regions="US">inch</unitPreference>
+    </unitPreferences>
+
+--
+    <unitPreferences category="length" usage="vehicle">
+      <unitPreference regions="001">meter</unitPreference>
+      <unitPreference regions="GB US">foot inch</unitPreference>
+      <unitPreference regions="MX">meter centimeter</unitPreference>
+    </unitPreferences>
+
+---
+
+# Unit Context : More Details
+
+## Spec: 
+- [unicode.org/reports/tr35/tr35-info.html#Preferred_Units_For_Usage](http://www.unicode.org/reports/tr35/tr35-info.html#Preferred_Units_For_Usage)
 
 ---
 layout: false
