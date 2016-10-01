@@ -188,6 +188,13 @@ madrugada - daybreak
 
 ---
 
+# Day Periods : More Details
+
+## Spec: [unicode.org/reports/tr35/tr35-dates.html#dayPeriods](http://unicode.org/reports/tr35/tr35-dates.html#dayPeriods)
+## Charts: [unicode.org/cldr/charts/latest/supplemental/day_periods.html](http://www.unicode.org/cldr/charts/latest/supplemental/day_periods.html)
+
+---
+
 class: center, middle, whitedrop
 
 # Unit Context and Usage
