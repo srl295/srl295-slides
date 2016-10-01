@@ -82,6 +82,89 @@ class: center, middle, whitedrop
 # Validity Data
 
 ---
+
+# Problem: What's a valid locale?
+
+> Ensuring that my application can at least identify all valid language codes is important for the delivery of relevant content.
+
+@Marvin, [stackoverflow.com/q/36089760/185799](http://stackoverflow.com/q/36089760/185799)
+
+???
+Thank you for asking that question, Marvin.
+--
+
+## Solution: Validity Data
+
+---
+
+# Validity Data : types
+
+- language (`en`)
+- script (`Latn`)
+- region (`US`)
+- subdivision (`US-CA`)
+- variant (`FONIPA`)
+- currency (`USD`)
+- unit (`energy-kilowatt-hour`)
+
+---
+
+# Validity Example : Script
+
+- **regular** : `Arab`, `Latn`, `Taml`, …
+- **deprecated** : `Qaai`, …
+- **special** : `Zmth`, …
+- **private_use** : `Qaaa`, `Qaab`, …
+- **unknown** : `Zzzz`
+
+---
+
+# Validity : String Range
+
+## `Qaaa~h` → 
+### `Qaa`**`b`**
+### `Qaa`**`c`**
+### …
+### `Qaa`**`h`**
+
+???
+http://www.unicode.org/reports/tr35/#String_Range
+
+---
+
+# Validity : XML Example
+
+    <supplementalData>
+      <idValidity>
+        <id type="script" idStatus="regular">
+          Adlm Aghb Ahom …
+        </id>
+        <id type="script" idStatus="special">
+          Zmth Zsye …
+        </id>
+        <id type="script" idStatus="deprecated">
+          Qaai
+        </id>
+        <id type="script" idStatus="private_use">
+          Qaaa~h Qaaj~z Qaba~x
+        </id>
+        <id type="script" idStatus="unknown">
+          Zzzz
+        </id>
+      </idValidity>
+    </supplementalData>
+
+---
+
+# Validity Data : More Info
+
+## Spec: 
+- [unicode.org/reports/tr35/#Validity_Data](http://www.unicode.org/reports/tr35/#Validity_Data)
+
+## Data:
+- [common/validity/*.xml](http://unicode.org/repos/cldr/tags/latest/common/validity/)
+
+---
 class: center, middle, whitedrop
 
 # Day Periods
@@ -190,8 +273,11 @@ madrugada - daybreak
 
 # Day Periods : More Details
 
-## Spec: [unicode.org/reports/tr35/tr35-dates.html#dayPeriods](http://unicode.org/reports/tr35/tr35-dates.html#dayPeriods)
-## Charts: [unicode.org/cldr/charts/latest/supplemental/day_periods.html](http://www.unicode.org/cldr/charts/latest/supplemental/day_periods.html)
+## Spec: 
+- [unicode.org/reports/tr35/tr35-dates.html#dayPeriods](http://unicode.org/reports/tr35/tr35-dates.html#dayPeriods)
+
+## Charts:
+- [unicode.org/cldr/charts/latest/supplemental/day_periods.html](http://www.unicode.org/cldr/charts/latest/supplemental/day_periods.html)
 
 ---
 
