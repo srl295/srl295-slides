@@ -201,4 +201,4 @@ layout: false
 - Slides/Contact:  https://git.io/srl295
 - Email: `srloomis` <i>@</i>  `us.ibm.com`
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-11-02-iuc40-cldradv)]
+.bottom[made with [remark.js](http://remarkjs.com) SVG: [intaglio](https://www.purgatorydesign.com/Intaglio/index.html) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-11-02-iuc40-cldradv)]
