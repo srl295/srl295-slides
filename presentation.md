@@ -350,6 +350,26 @@ grab yourself a ${BEVERAGE}
 🍰
 ---
 
+# process.versions
+
+```
+$ node -p 'process.versions'
+{ http_parser: '2.7.0',
+  node: '8.0.0-pre',
+  v8: '5.4.500.36',
+  uv: '1.10.0',
+  zlib: '1.2.8',
+  ares: '1.10.1-DEV',
+  modules: '51',
+  openssl: '1.0.2j',
+  icu: '58.1',
+  unicode: '9.0',
+  cldr: '30.0.2',
+  tz: '2016g' }
+```
+
+---
+
 # Intl working group
 
 https://github.com/nodejs/Intl
