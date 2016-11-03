@@ -369,9 +369,7 @@ https://github.com/nodejs/Intl
 
 # ECMA-402 process
 
-- TC39 meeting at this instant
-???
-… but in Washington State
+- TC39 meeting
 --
 
 - Collaborate: https://github.com/tc39/ecma402/
@@ -512,7 +510,7 @@ mybundle.getStrings({ languageId: 'es'}, …)
 - [strong-globalize](https://www.npmjs.com/package/strong-globalize)
    — _tools for globalizing JS code and HTML templates_
 ???
-IBM Storngloop, Tetsuo Seto, built on top of g11n-pipeline
+IBM Strongloop, Tetsuo Seto, built on top of g11n-pipeline
 ---
 
 # The front-end landscape
