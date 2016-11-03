@@ -229,11 +229,12 @@ Now we can compare the strings above.
 --
 
 - `'I'.toLocaleLowerCase('tr') === 'ı'.toLocaleLowerCase('tr')`
+- `'Πατάτα'.toLocaleUpperCase('el') === 'ΠΑΤΑΤΑ'`
 ???
 but the caveat…
 --
 
- - _coming soon to a [v8 near you](https://codereview.chromium.org/1812673005)_
+ - _coming soon to a [v8 near you](https://codereview.chromium.org/1812673005)_ - [#9445](https://github.com/nodejs/node/issues/9445)
  - API available today
 ---
 
@@ -389,11 +390,11 @@ a Date format is great. But the focus now is raw materials so first class suppor
 - [Format to Parts](https://github.com/tc39/ecma402/issues/30)
 --
 
- - **July** 2016
+ - **November** 2016
 ???
 Let's say you want to boldface just the month.
 --
- => `July` (Month), `2016` (Year)
+ => `November` (Month), `2016` (Year)
 ???
 Format to parts formats to a structure instead of just a string.
 --
