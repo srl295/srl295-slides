@@ -11,8 +11,6 @@ in the history of JavaScript internationalization, methods of packaging applicat
 
 BIO
 
-The presenter has been involved in Node.js internationalization for a number 
-of years and is the facilitator for the Node.js Intl working group.
 
 
 

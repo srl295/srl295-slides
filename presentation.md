@@ -1,6 +1,6 @@
 layout: true
 
-<div class="bottom">40<sup>th</sup> Internationalization and Unicode Conference • Nov 3<sup>rd</sup>, 2016 — 
+<div class="bottom">41<sup>st</sup> Internationalization and Unicode Conference • Oct 17<sup>th</sup>, 2017 — 
 <a href="https://srl295.github.io">@srl295</a></div>
 ---
 _background-image: url(img/node1.png)
@@ -9,14 +9,16 @@ class: center, middle, whitedrop
 
 
 .centersml[![Intl](img/Intl.png)]
-#  all the things 
+## as in Internationalization:
+### Tools for Global Node.js Applications
+ 
 &nbsp;
 #### Steven R. Loomis, IBM
 ???
 NOTE: Hey you, yeah you! An `Intl` capable browser is needed.
 I use Safari 10. 
 
-TITLE: Node.js: Intl all the things!
+TITLE: Intl as in Internationalization: Tools for Global Node.js Applications
 
 ABSTRACT: 
 
@@ -355,17 +357,18 @@ grab yourself a ${BEVERAGE}
 ```
 $ node -p 'process.versions'
 { http_parser: '2.7.0',
-  node: '8.0.0-pre',
-  v8: '5.4.500.36',
-  uv: '1.10.0',
-  zlib: '1.2.8',
+  node: '8.5.0',
+  v8: '6.0.287.53',
+  uv: '1.14.1',
+  zlib: '1.2.11',
   ares: '1.10.1-DEV',
-  modules: '51',
-  openssl: '1.0.2j',
-  icu: '58.1',
+  modules: '57',
+  nghttp2: '1.25.0',
+  openssl: '1.0.2l',
+  icu: '59.1',
   unicode: '9.0',
-  cldr: '30.0.2',
-  tz: '2016g' }
+  cldr: '31.0.1',
+  tz: '2017b' }
 ```
 
 ---
