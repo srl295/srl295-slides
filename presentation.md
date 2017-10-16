@@ -1,16 +1,14 @@
 layout: true
 
-<div class="bottom">41<sup>st</sup> Internationalization and Unicode Conference • Oct 17<sup>th</sup>, 2017 — 
+<div class="lefttxt">Put ICU to Work!</div>
+<div class="bottom">41<sup>st</sup> Internationalization and Unicode Conference • Oct 16<sup>th</sup>, 2017 — 
 <a href="https://srl295.github.io">@srl295</a></div>
 ---
-_background-image: url(img/node1.png)
+<!-- _background-image: url(img/node1.png) -->
 class: center, middle, whitedrop
 
-
-
-.centersml[![Intl](img/Intl.png)]
-## as in Internationalization:
-### Tools for Global Node.js Applications
+.centersml[![Intl](img/iculogo.png)]
+## Put ICU to Work!
  
 &nbsp;
 #### Steven R. Loomis, IBM
@@ -18,560 +16,883 @@ class: center, middle, whitedrop
 NOTE: Hey you, yeah you! An `Intl` capable browser is needed.
 I use Safari 10. 
 
-TITLE: Intl as in Internationalization: Tools for Global Node.js Applications
+TITLE: Put ICU to Work!
 
 ABSTRACT: 
 
-Node.js has become a popular platform, using JavaScript on the server, or in other environments outside of its traditional role in web browsers. This presentation will discuss challenges, lessons learned, and the latest status in enabling and making use of the Intl (EcmaScript-402) module support in Node.js, current status and what's next for JavaScript and Node.js globalization, and discuss techniques and best practices for Unicode and international support in Node.js applications.
+This tutorial gives attendees everything they need to know to get started with working with text in computer systems: character encoding systems, character sets, Unicode, and text processing, using the International Components for Unicode library (ICU). ICU is a very popular internationalization software solution, and is now hosted by Unicode itself. However, while it vastly simplifies the internationalization of products, there is a learning curve. The goal of this tutorial is to help new users of ICU install and use the library. Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK integration), verification of installation, introduction and detailed usage analysis of ICU's frameworks (normalization, formatting, calendars, collation, transliteration). The tutorial will walk through code snippets and examples to illustrate the common usage models, followed by demonstration applications and discussion of core features and conventions, advanced techniques and how to obtain further information. It is helpful if participants are familiar with Java, C and C++ programming. Issues relating to ICU4C/C++ as well as ICU4J (Java) will be discussed. After the tutorial, participants should be able to install and use ICU for solving their internationalization problems. Topics covered will include packaging of ICU data, integrating ICU into an applications development process, and how to get involved in the ICU development community.
 
 
-Welcome to this presentation on Node internationalization
-I'd like to start with a quote
----
-class: center, middle, whitedrop
-
-## _“i18n becoming increasingly important to the global adoption of Node.js”_
-
-### —
-Rod Vagg (@rvagg), “The Future of Node.js”, July 2016
----
-
-# About This Person…
-
---
-- IBM Global Foundations Technology Team
-???
-We make the technologies and best practices IBM needs to support a global audience.
---
-
- - [Globalization Pipeline](https://developer.ibm.com/open/ibm-bluemix-globalization-pipeline-service/)
-???
-I work on our Globalization Pipeline service which is just out of Beta
-this month, and a number of technologies which I'll be discussing today including
---
-
-- [Unicode](http://unicode.org)
-???
-You all use Unicode. Go join Unicode. Go support Unicode, adopt your favorite code point.
---
-
- - IBM’s Rep: [Unicode TC](http://unicode.org/consortium/utc.html)
- - Chair: [ULI-TC](http://unicode.org/uli)
- - Participant: [CLDR-TC](http://unicode.org/cldr) 
-???
---
-
- - Participant: [ICU-TC](http://icu-project.org)
---
-<br><small>International Components for Unicode</small> 
---
-<br><small>(IBM’s lead for C/C++)</small>
-???
- we will discuss more
---
-
-- Node
-  - [Intl WG](https://github.com/nodejs/Intl) Facilitator
-  - CTC Observer
 
 ---
 
-# Agenda
+# Can’t I just “use Unicode” and be done?
 
-- What is `Intl`?
-- How do I get it?
-- How do I use it?
-- Where is it going?
-- Are there other options?
-- What about Front-end and IoT
+--
+
+.rightmed[![Heavy Books](img/heavybooks.jpg)]
+
+--
+
+- 1,400 pages
+--
+ + Annexes
+--
+ + additional standards
+--
+
+- More than 110,000 characters
+--
+
+- Significant update about once a year
+--
+
+- 80+ character properties,many multi-valued
+---
+
+# Unicode covers the world 🌍
+
+- _“Unicode provides a unique number for every character,no matter what the platform,no matter what the program,no matter what the language.”_ [(unicode.org)](http://www.unicode.org/standard/WhatIsUnicode.html)
+
+--
+
+# ICU brings you home 🏡
+
+- Requirements vary widely across languages & countries
+- Sorting
+- Text searching
+- Bidirectional text processing and complex text layout
+- Date/time/number/currency formatting
+- Codepage conversion
+- …many more
 
 ---
 
-# ECMA-262/ECMA-402
+# ICU comes home to Unicode
 
-- ECMA-262: ECMAScript language
- - Often called JavaScript
- - Specifies Unicode text even in 1st ed (1997)
---
-
-- [ECMA-402](https://github.com/tc39/ecma402): `Intl` API
- - _Optional_
- - 1st Ed. 2010… 3rd Ed 2016
+- 1999: [_IBM Classes for Unicode_ becomes the _International Components for Unicode_](http://blog.unicode.org/2016/05/icu-joins-unicode-consortium.html)
+- 2016: ICU is now from Unicode
+ - Similar open-source license
+ - Hosting transferred from IBM to Unicode (ICU-TC) 
+ - Build machines accessible to entire ICU-TC
+ - 1-click CLA process – anyone can contribute!
 
 ---
 
-# Intl in Node.js
 
-- Unicode support / `Intl` implementation from v8
---
+# ICU’s Laundry List
 
-.centersml[![Heavy Books](img/heavybooks.jpg)]
-???
-…and the heavy lifting is done by 
---
+.leftside[
+- Breaks: word, line, …
+- Formatting
+ - Date & time
+ - Durations
+ - Messages
+ - Numbers & currencies
+ - Plurals
+- Transforms
+ - Normalization
+ - Casing
+- Transliterations]
+.rightside[
+- Unicode text handling
+- Charset conversions (200+)
+- Charset detection
+- Collation & Searching
+- Locales from CLDR (640+)
+- Resource Bundles
+- Calendar & Time zones
+- Unicode Regular Expressions
+…]
 
- - C++: [ICU](http://icu-project.org) 
---
-
- - [CLDR](http://unicode.org/cldr) data (English by default for space)
---
-
-- 2015: v0.12+ downloads: `Intl` available by default
-???
-early in 2015 when v0.12 shipped…
---
-
-- 2016: v6.x+: source tree builds `Intl` by default.
-
-???
-And now, ICU is included in the source tree- more on that later.
 ---
 
-# API
-???
-Let’s dig in to what the `Intl` APIs look like
---
+# Benefits of ICU 
 
-## `Intl`
---
+- Mature, widely used (all IBM brands and operating systems), up-to-date set of C/C++ and Java libraries
+ - Basis for Java 1.1 internationalization, but goes far beyond Java 1.1
+ - Team continues to work on improving and monitoring performance.
+- Very portable – identical results on all platforms/programming languages
+ - C/C++ (ICU4C): many platforms/compilers
+ - Java (ICU4J): Oracle Java SE, IBM JRE, OpenJDK, Android
+ - Wrappers: D/C#/PHP/Python/…
+- Customizable & Modular
+  - Open source (since 1999) – but non-restrictive
+  - Contributions from many parties (IBM, Google, Apple, Microsoft, ...)
+- Sponsored by Unicode
 
-- `new Intl.NumberFormat(…)` 
-???
-Formats Numbers
---
-
-- `new Intl.DateTimeFormat(…)`
-???
-Formatting Dates
---
-
-- `new Intl.Collator(…)`
-???
-Collating… and if you're not sure what this here's a hint
 ---
 
-# [IBM 77 Collator](https://www-03.ibm.com/ibm/history/exhibits/vintage/vintage_4506VV4004.html)
-.centerbig[![IBM Collator](img/1024px-IBM_077_collator_at_CHM.agr.jpg)]
-###### By [ArnoldReinhold](https://commons.wikimedia.org/wiki/File:IBM_077_collator_at_CHM.agr.jpg) (Own work) [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons
-???
-This is one of IBM’s earlier collators, which put a deck of cards in correct sequence
-In 1937, we were a few years off from full Unicode support, but we did have globalization
-support pretty early on.
+# Where do I get ICU?
+
+## Main site: http://icu-project.org/
+- Downloads, API references, Mailing list, Bug tracking
+- Userguide: http://userguide.icu-project.org
+ - User's guide with examples
+
 ---
 
-# Familiar Objects
-- `Date`
-- `Number`
-- `String`
-???
-You don't need to use the Intl object directly to make
-use of these facilities though. Some familiar players have been extended also.
+# Prepackaged ICU
+
+## Package Managers (C)
+- `brew install icu4c`
+- `apt-get install libicu-dev`
+- `dnf install libicu-devel`
+
+## Maven and friends: (J)
+- Group: *com.ibm.icu*
+- artifactId: *icu4j*
+
 ---
 
-# `Date`
---
+# [ICU Userguide](http://userguide.icu-project.org)
 
-- ~~`Date().toString()`~~
-???
-So, instead of calling the familiar toString() when you want to get a date…
---
+.centerbig[![User’s Guide](img/userguide.png)]
 
-- `Date().toLocaleString()`
-???
-… call toLocaleString and friends
---
-
-<pre class='i18n-dates' ></pre>
 ---
 
-# `Number`
---
+# [API Docs](http://icu-project.org)
 
-- ~~`Number().toString()`~~
-???
-Similarly, instead of just converting a number to a string…
---
-
-
-<pre class='i18n-numbers' ></pre>
-
-???
-Use the internationalized version.
+.centerbig[![API Docs](img/apidocs.png)]
 ---
 
-# `String`
+# [API Change Report](http://site.icu-project.org/download)
 
-???
-And what about our friend, String?
---
-
-- ~~`'a' < 'b'`~~
-???
-This is a binary compare - not for humans
---
-
-- ~~`'ü' === 'ü'`~~
-???
-Node returns "false" here. (left hand string.length = 2), Unicode normalization form.
---
-
-- ~~`'I'.toLowerCase() === 'ı'.toLowerCase()`~~
-???
-Again this takes a too simplistic approach.
---
-
-- `"abc".localeCompare("ábc")`
-???
-gets it right.
---
-
-- `('u' + '̈').normalize("NFC") // "ü"`
-???
-Now we can compare the strings above.
---
-
-- `'I'.toLocaleLowerCase('tr') === 'ı'.toLocaleLowerCase('tr')`
-- `'Πατάτα'.toLocaleUpperCase('el') === 'ΠΑΤΑΤΑ'`
-???
-but the caveat…
---
-
- - _coming soon to a [v8 near you](https://codereview.chromium.org/1812673005)_ - [#9445](https://github.com/nodejs/node/issues/9445)
- - API available today
+.centerbig[![Change Report](img/changerpt.png)]
 ---
 
-# Locale Parameter
+# Mailing Lists
 
+##  http://site.icu-project.org/contacts
+- `icu-support` – technical support and discussion
+- `icu-design` – API proposals by ICU team
+- `icu-announce` –announcements
+- `icu-bugrfe` / icu-commits :  track ICU bugs and commits
+
+---
+
+# [Bug Reports](https://ssl.icu-project.org/trac)
+
+.centerbig[![Bug Report](img/bugrpt.png)]
+---
+
+# CLA
+
+for [Code Contributions](https://ssl.icu-projecrt.org/trac#cla)
+
+.centerbig[![CLA1](img/cla1.png)]
 --
 
-- `new Date().toLocaleDateString()` // "default"
+.centerbig[![CLA2](img/cla2.png)]
+---
+class: center, middle
+
+# And now, `code`
+
+---
+
+# Task at Hand
+
+- _Display a list of world regions, with their population figures_
+--
+
+## Example
+- 150,000: Ceuta and Melilla
+- 38,087,800: Algeria
+- 15,439,400: Ecuador
 
 ???
-This will use your default locale for your environment
+How do we display this in an international way
+---
+name: firstlook
+
+# ICU4C First Look
+
+```c
+#include <unicode/…>
+
+void func() {
+  UErrorCode status = U_ZERO_ERROR;
+  u_init(&status);
+  if ( U_SUCCESS(status) ) { /* … */ }
+}
+```
+---
+template: firstlook
+
+### `#include <unicode/…>`
+- All ICU headers are in the `unicode/` subdirectory
+---
+template: firstlook
+
+### `UErrorCode status = U_ZERO_ERROR;`
+- Error code is a fill-in, but must be initialized
+---
+template: firstlook
+
+### `u_init(&status);`
+- Returns successful `status` if ICU data loaded OK
+---
+template: firstlook
+
+### `if ( U_SUCCESS(status) )`
+- TRUE if there was no error
+---
+
+# `ASSERT_OK()`
+
+```c
+#define ASSERT_OK(status) \
+ if(U_FAILURE(status)) { \
+     puts(u_errorName(status)); \
+     return 1; \
+ }
+```
+
 --
 
-- `new Date().toLocaleDateString('es-US')` // "Hard Coded Locale"
-
-???
-But you can choose a specific locale.
+- always check for failure
 --
 
-- 
---
-Server Side?
+- (We will use this macro to keep test code more compact)
+---
 
-???
-But we're about servers here, so…
---
+# icuhello.cpp (C)
 
+```c
+#include <unicode/uclean.h>
+#include <unicode/ustream.h>
+#include <iostream>
+#include "assertok.h"
 
-```js
-var Negotiator = require('negotiator');
+int main(int argc, const char *argv[]) {
+    UErrorCode status = U_ZERO_ERROR;
+    u_init(&status);
+    ASSERT_OK(status);
+    UnicodeString msg(u"Hello, ☃ ");
 
-http.createServer(function(req, res) {
-  new Date().toLocaleDateString(new Negotiator(req).languages());
-});
+    std::cout << msg << std::endl;
+
+    return 0;
+}
 ```
 --
 
- -  https://github.com/nodejs/Intl/issues/10
+# `Hello, ☃`
+--
 
----
-class: center, ultrawhitedrop
-background-image: url(img/heavybooks.jpg)
-
-# Data Size
-
-???
-Several pounds of Unicode and linguistic resources.
-Did not bring these in my backpack.
+- _but, let’s actually build this_
 ---
 
-# Data Size
+# Building `icuhello.cpp`
 
-* `node`
---
-
- - about 25 MiB
-???
-just the binary
---
-
-* ICU’s locale data
---
-
- - for 200 languages
---
-
- - about 25 MiB
-???
-Houston, we have sticker shock
----
-
-# Packaging
-
-- Download from https://nodejs.org
---
-
-- Or `configure` from the repo
---
- `:+1:`
---
-
- - 25 MiB binary
---
-, English only
---
-
- - full APIs
-???
-No extra download - ICU source included with Node.
---
-
-- `npm install full-icu`
---
-
- - wombats download extra 25 MiB
---
-
- - follow the directions*
-<pre>node --icu-data-dir=… app.js</pre>
---
-
- - Full ICU data support
---
-
-- `./configure --with-intl=full-icu --download=all`
-???
-I guess Pythons download ICU’s full source
-grab yourself a ${BEVERAGE}
---
-
- - Full ICU data support, baked in 
---
-🍰
----
-
-# process.versions
-
+```shell
+$ brew install icu4c
 ```
-$ node -p 'process.versions'
-{ http_parser: '2.7.0',
-  node: '8.5.0',
-  v8: '6.0.287.53',
-  uv: '1.14.1',
-  zlib: '1.2.11',
-  ares: '1.10.1-DEV',
-  modules: '57',
-  nghttp2: '1.25.0',
-  openssl: '1.0.2l',
-  icu: '59.1',
-  unicode: '9.0',
-  cldr: '31.0.1',
-  tz: '2017b' }
+--
+
+```shell
+$ git clone https://github.com/srl295/icu-demos.git
+```
+???
+on mac…
+
+--
+
+```shell
+$ cd c && aclocal && autoconf
+$ env PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig  ./configure
+```
+--
+
+```shell
+$ make && ./icuhello
+Hello, ☃
+```
+--
+
+### under the hood:
+
+```shell
+$ PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH
+$ pkg-config icu-i18n icu-io icu-uc --cflags
+-I/usr/local/Cellar/icu4c/59.1/include
+$ pkg-config icu-i18n icu-io icu-uc --libs
+-L/usr/local/Cellar/icu4c/59.1/lib -licuio -licui18n -licuuc -licudata
+```
+---
+name: icuhelloworld.cpp
+
+# `icuhelloworld.cpp`
+
+```c
+#include <unicode/locdspnm.h>
+#include <unicode/ustream.h>
+#include <iostream>
+#include "assertok.h"
+
+int main() {
+    UErrorCode status = U_ZERO_ERROR;
+    LocalPointer<LocaleDisplayNames> 
+        names(LocaleDisplayNames::createInstance(Locale::getDefault(), ULDN_DIALECT_NAMES));
+    if(!names.isValid()) return 1; // hereafter: ASSERT_VALID(names);
+    UnicodeString world;
+    names->regionDisplayName("001", world);
+    std::cout << "Hello, " << world << std::endl;
+    return 0;
+}
+```
+---
+template: icuhelloworld.cpp
+
+# `Hello, World`
+---
+template: icuhelloworld.cpp
+
+```shell
+$ LC_ALL=es ./icuhelloworld
 ```
 
+# `Hello, Mundo`
 ---
 
-# Intl working group
+# `icuhelloworld.cpp`
 
-https://github.com/nodejs/Intl
-.gftt[![Intl Logo](img/Intl.png)]
---
-
-- Functionality &amp; compliance (standards: ECMA, Unicode…)
---
-
-- Support for Globalization/Internationalization issues
---
-
-- Guidance and Best Practices
---
-
-- Refinement of existing Intl implementation
+```shell
+$ LC_ALL=mt ./icuhelloworld
+```
+## Hello, Dinja
+```shell
+$ LC_ALL=zh ./icuhelloworld
+```
+## Hello, 世界
 ---
+class: center, middle
 
-# ECMA-402 process
-
-- TC39 meeting
---
-
-- Collaborate: https://github.com/tc39/ecma402/
+# 🙀
 ???
-Jump in…
----
-
-# ECMA-402 future
-
-## General trend: 
-- “low level” support vs “high level” formatters
-???
-a Date format is great. But the focus now is raw materials so first class support can be written.
----
-
-## ECMA-402 Upcoming:
-- [Format to Parts](https://github.com/tc39/ecma402/issues/30)
+What are we doing?!
 --
-
- - **November** 2016
-???
-Let's say you want to boldface just the month.
---
- => `November` (Month), `2016` (Year)
-???
-Format to parts formats to a structure instead of just a string.
---
-
-- Plural Rules
---
-
- - ~~You have 0 friend(s)~~
-???
-None of you here, because, hey, you showed up to hear me.
---
-
- - **`one`** You have one friend
---
-, **`other`** You have 0 friend**s**
---
-, **`other`** You have 16,777,216 friend**s**
-???
-So in English, we only need two different classes
---
-
- - English: 0 dogs, 1 dog, 2 dogs, 3 dogs, 4 dogs
---
-
- - Welsh: 0 cŵn, 
-???
-kun
---
-1 ci, 
-???
-ki
---
-2 gi, 
-???
---
-3 ci, 
-???
---
-4 ci
-???
---
-
-- Locale Info
-???
-What are the valid locale ids? how do you process them?
---
-
- - Canonical Locales, Locale info
---
-
- - for building your own lookups
+ _string concatenation!!!_ 
 
 ---
 
-## In the Future:
-- MessageFormat and other Formatters
-- BreakIterator (text segmentation)
-???
+# No String Concatenation 🙀
 
----
-
-# Challenges/What's next
-
-- data size/ data stability
-???
-Not to mention time zones
+- Order is different for different languages, can't just concatenate strings.
 --
 
-- <sup>*</sup>[even better discoverability](https://github.com/nodejs/node/issues/3460)
-???
-Here's the asterisk from earlier.
---
 
-<pre>$ npm install full-icu
-$ node app.js</pre>
-???
-And that’s it!
---
-
-- ECMA compliance testing
-???
-Imagine that…
---
-
-- documentation and best practices
-???
-As npm says, You need some help. 
----
-
-# Node libraries
-
-???
-Intl API does not deal with messages / resources
---
-
-- [g11n-pipeline](https://github.com/IBM-Bluemix/gp-js-client) — _REST service for translation_
+### My .xa[Aunt’s] .xb[pen] is on the table.
 --
 
 ```js
-mybundle.getStrings({ languageId: 'es'}, …)
-    => { hello: '¡hola!', goodbye: '¡adiós!' }
+whom + "’s " + what + " is on the " + where
 ```
 --
 
-- [Intl.js](https://github.com/andyearnshaw/Intl.js)
-   — _latest ECMA-402 features_
---
-
-- [cldr.js](https://github.com/rxaviers/cldrjs)
-   — _access to full CLDR data_
---
-
-
-- [strong-globalize](https://www.npmjs.com/package/strong-globalize)
-   — _tools for globalizing JS code and HTML templates_
-???
-IBM Strongloop, Tetsuo Seto, built on top of g11n-pipeline
+### La .xb[pluma] de .xa[mi tía] está en la tabla.
 ---
 
-# The front-end landscape
+# Pattern Syntax
+
+--
+### `en:` .xa[`{whom}`]`’s` .xb[`{what}`] `is on the {where}.`
 --
 
-- … as of November 2016, great!
---
- `:+1:`
+### `es:` .xb[`{what}`] `de` .xa[`{whom}`] `está en la {where}.`
 --
 
- - `Intl` support in _all_ browsers
+## Or, avoid sentences entirely
+
+### “Location: table, Object: pen, Owner: Aunt”
+
+---
+name: hellomsg.cpp
+
+# `hellomsg.cpp` 
+
+```c
+    const int kArgCount = 1;
+    Formattable   arguments[kArgCount] = { world };
+    UnicodeString argnames[kArgCount]  = {"world"};
+    FieldPosition fpos = 0;
+```
 ???
-Thanks Safari 10
---
+one argument
+---
+template: hellomsg.cpp
 
-- go use `Intl`
---
- (+ polyfills) 
+```c
+    MessageFormat msg_en("Hello, {world}", 
+        Locale("en"), status);
+    UnicodeString result_en;
+    msg_en.format(argnames, arguments, kArgCount, result_en, status);
+    ASSERT_OK(status);
+    std::cout << "en: " << result_en << std::endl;
+```
+### `en: Hello, World`
+
+---
+template: hellomsg.cpp
+
+```c
+    MessageFormat msg_es("¡Hola, {world}!",
+        Locale("es"), status);
+    UnicodeString result_es;
+    msg_es.format(argnames, arguments, kArgCount, result_es, status);
+    ASSERT_OK(status);
+    std::cout << "es: " << result_es << std::endl;
+```
+### `es: ¡Hola, Mundo!`
+
 ---
 
-# The IoT landscape
+# Resource Files
 
-- node builds tested with cross-platform build
-- build node with `--without-intl` (pre v.6: `--with-intl=none`) to disable Intl
+## English
+### `Hello, {world}`
+
+## Spanish
+### `¡Hola, {world}!`
+
+---
+
+# Resource Files
+
+## Base language (`root.txt`)
+```
+root {
+    hello { "Hello, {world}!" }
+}
+```
+
+## Translated (`es.txt`)
+```
+es {
+    hello { "¡Hola, {world}!" }
+}
+```
+### etc…
+
+---
+
+# `bldicures.py`
+
+`bldicures` runs ICU’s `genrb` tool to produce `hellores.dat`
+
+- `root.txt` + `es.txt`  => `hellores.dat`
+
+---
+
+# `hellores.cpp`
+### loading the message
+
+```c
+    Locale locale = Locale::getDefault();
+    ResourceBundle resourceBundle("hellores", locale, status);
+    UnicodeString thing = resourceBundle.getStringEx("hello", status);
+    ASSERT_OK(status);
+    std::cout << locale.getName() << " Message: " <<   thing << std::endl;
+```
 --
 
- - more and more features turned off without ICU
+```shell
+$ ./hellores
+en_US Message: Hello, {world}!
+
+$ LC_ALL=es ./hellores
+es Message: ¡Hola, {world}!
+```
+---
+
+# `hellores.cpp`
+### Resource based hello
+
+```c
+    // thing = “¡Hola, {world}!”, etc…
+    MessageFormat msg(thing, locale, status);
+    UnicodeString result;
+    msg.format(argnames, arguments, kArgCount, result, status);
+    std::cout << result << std::endl;
+```
+--
+
+```
+$ ./hellores
+en_US Message: Hello, {world}!
+Hello, World!
+```
+--
+
+```
+$ LC_ALL=es ./hellores
+es Message: ¡Hola, {world}!
+¡Hola, Mundo!
+```
+--
+
+```
+$ LC_ALL=zh ./hellores
+zh Message: Hello, {world}!
+Hello, 世界!
+```
+
+---
+class: center, middle
+
+# Java
+--
+(ICU4J)
+---
+
+# ICU4J Resource Bundles
+
+- Can use ICU4C binary bundles via `UResourceBundle`
+--
+
+- Most Java apps will just use built-in `ListResourceBundle`
+--
+
+- (See [Java’s docs](https://docs.oracle.com/javase/9/docs/api/java/util/ListResourceBundle.html))
+---
+
+# ICU4J : Hello, Maven
+
+```xml
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>59.1</version>
+		</dependency>
+```
+
+---
+
+# `Hello.java`
+
+```java
+  Locale locale = Locale.getDefault();
+  String world = LocaleDisplayNames
+          .getInstance(ULocale.forLocale(locale))
+          .regionDisplayName("001");
+  System.out.println("Hello, " + world + "\u2603");
+```
+
+### `Hello, World☃`
+
+---
+
+# `Hello.java` (español)
+
+```java
+  Locale locale = Locale.forLanguageTag("es");
+  String world = LocaleDisplayNames
+          .getInstance(ULocale.forLocale(locale))
+          .regionDisplayName("001");
+  System.out.println("Hello, " + world + "\u2603");
+```
+
+### `Hello, Mundo☃`
+--
+
+- use `java.util.Locale`
+--
+
+- …except for some ICU4J APIs that still use ICU’s `ULocale`
+---
+
+# `BadMessage.properties`
+
+```properties
+population=The territory of {territory} has {population} persons.
+```
+---
+name: BadMessage.java
+
+# `BadMessage.java`
+
+```java
+        final Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle(BadMessage.class.getName());
+        String popmsg = rb.getString("population");
+        System.out.println("Message: " + popmsg);
+
+        for(final PopulationData.TerritoryEntry entry :
+           PopulationData.getTerritoryEntries(locale)) {
+            MessageFormat m = new MessageFormat(popmsg, locale);
+            Map msgArgs = new HashMap<String,Object>();
+            msgArgs.put("territory", entry.territoryName());
+            msgArgs.put("population", entry.population());
+            System.out.println(m.format(msgArgs));
+        }
+```
+---
+template: BadMessage.java
+
+```
+Message: The territory of {territory} has {population} persons.
+The territory of Afghanistan has 33,332,000 persons.
+The territory of Albania has 3,038,590 persons.
+The territory of Algeria has 40,263,700 persons.
+```
+
+ - ok so far
+---
+template: BadMessage.java
+
+```
+The territory of Bouvet Island has 1 persons.
+The territory of Unknown Region has 0 persons.
+```
+
+- Not so OK!
+--
+
+.righttiny[![Bouvet de Lozier](img/bouvet.png)]
+---
+
+# CLDR Plurals
+
+.centerbig[![plurals](img/plurals.png)]
+
+---
+
+# `GoodMessage.properties`
+
+```properties
+population={population, plural, 
+  one{The territory of {territory} has # person}
+  other{The territory of {territory} has # persons}}
+```
+--
+
+- no code change
+--
+
+```
+The territory of United States has 323,996,000 persons
+The territory of Unknown Region has 0 persons
+The territory of Uruguay has 3,351,020 persons
+The territory of Botswana has 2,209,210 persons
+The territory of Bouvet Island has 1 person
+The territory of Brazil has 205,824,000 persons
+```
+
+---
+
+# Sorting it all out
+
+- binary comparison inadequate
+- order varies by language (Danish ‘aa…’ follows ‘z…’)
+- need multiple-level collation
+
+---
+
+
+# Collators
+
+.leftside[## Uses:
+ - comparing
+ - sorting
+ - searching]
+.rightside[## Options:
+ - case sensitive?
+ - ignore punctuation?
+ - UPPERCASE first?
+ - which variant collator?
+ - which locale?
+ - custom tailorings?
+ - time vs. memory tradeoff?]
+
+---
+
+# `CollateMessage.java`
+
+```java
+        Collator col = Collator.getInstance(locale);
+        for(final PopulationData.TerritoryEntry entry :
+         PopulationData.getTerritoryEntries(locale,
+                new TreeSet<>((o1, o2) 
+                -> col.compare (o1.territoryName(), o2.territoryName())))) {
+                    …
+```
+--
+
+* No Lambda function needed if `Set<String>`
+
+---
+
+# Multilingual
+
+### Russian
+```
+The territory of Аландские о-ва has 26 200 persons in it.
+The territory of Албания has 3 011 410 persons in it.
+```
+
+### Japanese
+```
+アイスランドには、315,281人います。
+アイルランドには、4,775,980人います。
+```
+
+### Spanish
+```
+En la región de “Afganistán” hay 31.108.100 personas.
+En la región de “Albania” hay 3.011.410 personas.
+En la región de “Angola” hay 18.565.300 personas.
+```
+---
+
+# API Stability
+
+- `Internal`: Used by ICU implementation or Technology Preview.
+--
+
+- `Draft`: New API, reviewed and approved by ICU project team. The API might be still changed.
+--
+
+- `Stable`: For public use, the API signature won’t be changed in future releases.
+--
+
+- `Deprecated`: Previously Stable, but no longer recommended. The API might be removed after a few releases.
+
+--
+
+### More details:
+
+- [userguide.icu-project.org/design](http://userguide.icu-project.org/design#TOC-ICU-API-compatibility)
+---
+
+# API Stability in docs
+
+.centermed[![drafty](img/drafty.png)]
+---
+
+# Binary Stability
+
+## Source code compatible
+- Consumer program should be compiled successfully without changes.
+- Rare exceptions, documented in readme.
+
+## Serialization compatible (ICU4J)
+- Newer ICU version should be able to deserialize object data serialized by older ICU version.
+- (see docs for limited exceptions)
+---
+
+# Packaging:
+--
+_“It's too big”_
+--
+
+- Customize data http://userguide.icu-project.org/icudata
+- Repackage ICU4C Code http://userguide.icu-project.org/packaging
+
+ Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
+(May not reduce data size)
+
+---
+
+# Data Changes
+
+.centerbig[![datachange](img/datachange.png)]
+
+---
+
+# Data Stability
+
+## Unicode stability
+
+--
+
+- character type, upper/lower case, normalization, text direction, sorting order...
+--
+
+- policy http://www.unicode.org/policies/stability_policy.html
+--
+
+- Unicode is still growing.
+--
+
+
+## Locale data
+--
+
+- cultural data can be updated based on community voting
+--
+
+- cultural format results are not suited for serializing data, application protocols and storage
+
+---
+
+# Stability Problems
+
+--
+
+- “`08-04-2017`” may not parse as “`8 kwi 2017`”
+--
+
+- DON’T send localized data across the network between programs
+--
+(other side may parse/format differently)
+--
+
+- DON’T store localized data on disk
+--
+( later app version may parse/format differently)]
+--
+
+- DO send and store non-localized format
+ - Binary: 0x12345678
+ - “Neutral” - ISO 8601 - “`2017-04-08`”
+--
+
+- REMEMBER ॳ may not be a letter
+???
+U+0973
+--
+(isLetter()) in one Unicode version, but may later be defined.
+--
+Could cause difficulties if used to validate account names, …
+???
+Spotify
+--
+
+- DO Think carefully about where Unicode properties are used.
+---
+
+# ICU4J vs JDK `(0/2)`
+
+- ICU has functionality beyond JDK - See userguide.
+--
+
+- Where there is overlap, in some cases JDK may be used instead of ICU.
+--
+ Example: `Locale` instead of ICU’s ULocale
+---
+
+# ICU4J vs JDK `(1/2)`
+
+.centerhuge[![jdk1](img/jdk1.png)]
+
+---
+
+# ICU4J vs JDK `(2/2)`
+
+.centerhuge[![jdk2](img/jdk2.png)]
+
 ---
 layout: false
 
 # Thanks/Q&A
 
+### [http://icu-project.org](https://icu-project.org)
+
 - Social: @srl295
 - Slides/Contact:  https://git.io/srl295
+ - sample code: https://github.com/srl295/icu-demos.git
+ - ( tag `iuc41-2017` at press time)
 - Email: `srloomis` <i>@</i>  `us.ibm.com`
-- Mozilla MDN Intl: 
-.shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
-- Node Intl WG:   http://github.com/nodejs/Intl 
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-11-03-iuc40)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-10-16-iuc41-icuwork)]
