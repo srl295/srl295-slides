@@ -92,9 +92,22 @@ $(function() {
                 ) + '\n'  );
             } 
         });
+        forea('.i18n-ftp', function(x) {
+            if(x) {
+                $(x).text(doEval(
+                    "JSON.stringify(new Intl.DateTimeFormat('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"').formatToParts())\n"
+                ) + '\n\n' +
+                doEval(
+                    "JSON.stringify(new Intl.DateTimeFormat('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"',\n {month:'long', day: 'numeric', year: 'numeric'}).formatToParts())\n"
+                ) + '\n\n' +
+                doEval(
+                    "JSON.stringify(new Intl.DateTimeFormat('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"').formatToParts())\n"
+                ) + '\n'  );
+            } 
+        });
     };
     doWhat(); // once
-    window.setInterval(doWhat, TINY_BLINK);
+    window.setInterval(doWhat, TINY_BLINK*10);
 });
 
 function doEval(x) {

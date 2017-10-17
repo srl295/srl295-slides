@@ -71,8 +71,8 @@ You all use Unicode. Go join Unicode. Go support Unicode, adopt your favorite co
 --
 
 - Node
-  - [Intl WG](https://github.com/nodejs/Intl) Facilitator
-  - CTC Observer
+  - [~~Intl WG~~ _Intl Team_](https://github.com/nodejs/Intl) Facilitator
+  - CTC Observer/Past member
 
 ---
 
@@ -97,7 +97,10 @@ You all use Unicode. Go join Unicode. Go support Unicode, adopt your favorite co
 - [ECMA-402](https://github.com/tc39/ecma402): `Intl` API
  - _Optional_
  - 1st Ed. 2010… 3rd Ed 2016
+ - 4th Ed in progress
 
+~~~
+There's a great session on ECMA-402 just after this one, so don't miss that.
 ---
 
 # Intl in Node.js
@@ -105,7 +108,7 @@ You all use Unicode. Go join Unicode. Go support Unicode, adopt your favorite co
 - Unicode support / `Intl` implementation from v8
 --
 
-.centersml[![Heavy Books](img/heavybooks.jpg)]
+.rightsml[![Heavy Books](img/heavybooks.jpg)]
 ???
 …and the heavy lifting is done by 
 --
@@ -122,6 +125,7 @@ early in 2015 when v0.12 shipped…
 --
 
 - 2016: v6.x+: source tree builds `Intl` by default.
+- Node kept up with latest ICU (backport where possible)
 
 ???
 And now, ICU is included in the source tree- more on that later.
@@ -231,13 +235,13 @@ Now we can compare the strings above.
 --
 
 - `'I'.toLocaleLowerCase('tr') === 'ı'.toLocaleLowerCase('tr')`
-- `'Πατάτα'.toLocaleUpperCase('el') === 'ΠΑΤΑΤΑ'`
-???
-but the caveat…
 --
 
- - _coming soon to a [v8 near you](https://codereview.chromium.org/1812673005)_ - [#9445](https://github.com/nodejs/node/issues/9445)
- - API available today
+- `'Πατάτα'.toLocaleUpperCase('el') === 'ΠΑΤΑΤΑ'`
+--
+
+- `'𐓰'.toUpperCase() === '𐓈'`
+// (U+104f0/U+104c8 - Osage - Unicode 9)
 ---
 
 # Locale Parameter
@@ -275,6 +279,12 @@ http.createServer(function(req, res) {
 --
 
  -  https://github.com/nodejs/Intl/issues/10
+
+---
+
+# `DateTimeFormat.formatToParts`
+
+<p class='i18n-ftp' ></p>
 
 ---
 class: center, ultrawhitedrop
@@ -354,26 +364,30 @@ grab yourself a ${BEVERAGE}
 
 # process.versions
 
-```
-$ node -p 'process.versions'
-{ http_parser: '2.7.0',
-  node: '8.5.0',
-  v8: '6.0.287.53',
-  uv: '1.14.1',
-  zlib: '1.2.11',
-  ares: '1.10.1-DEV',
-  modules: '57',
-  nghttp2: '1.25.0',
-  openssl: '1.0.2l',
-  icu: '59.1',
-  unicode: '9.0',
-  cldr: '31.0.1',
-  tz: '2017b' }
-```
+```json
+{
+    "http_parser": "2.7.0",
+    "node": "9.0.0-pre",
+    "v8": "6.1.534.42",
+    "uv": "1.15.0",
+    "zlib": "1.2.11",
+    "ares": "1.13.0",
+    "modules": "58",
+    "nghttp2": "1.25.0",
+    "openssl": "1.0.2l",
+    "icu": "60.1",
+    "unicode": "10.0",
+    "cldr": "32.0",
+    "tz": "2017b"
+}```
 
 ---
 
 # Intl working group
+---
+
+# ~~Intl working group~~ 
+# Intl team
 
 https://github.com/nodejs/Intl
 .gftt[![Intl Logo](img/Intl.png)]
@@ -411,15 +425,6 @@ a Date format is great. But the focus now is raw materials so first class suppor
 
 ## ECMA-402 Upcoming:
 - [Format to Parts](https://github.com/tc39/ecma402/issues/30)
---
-
- - **November** 2016
-???
-Let's say you want to boldface just the month.
---
- => `November` (Month), `2016` (Year)
-???
-Format to parts formats to a structure instead of just a string.
 --
 
 - Plural Rules
@@ -476,6 +481,14 @@ What are the valid locale ids? how do you process them?
 - MessageFormat and other Formatters
 - BreakIterator (text segmentation)
 ???
+
+---
+
+# Node.js core
+
+- [WHATWG URL Parser](https://nodejs.org/api/url.html#url_the_whatwg_url_api)
+- [Transcode  API](https://nodejs.org/api/buffer.html#buffer_buffer_transcode_source_fromenc_toenc) / [WHATWG Encoding](https://nodejs.org/api/util.html#util_class_util_textdecoder)
+- Error Translation
 
 ---
 
@@ -574,4 +587,4 @@ layout: false
 .shortlink[[mzl.la/1OSOtvf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)]
 - Node Intl WG:   http://github.com/nodejs/Intl 
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2016-11-03-iuc40)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-10-17-iuc41-nodeintl)]
