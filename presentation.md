@@ -177,8 +177,12 @@ suppressBreakAfter(u"Abbr");
 
 # Pluralization
 
-- investigating OMOS and TAPICC
+--
 - Semantic metadata?
+  https://dbpedia.org/page/Category:Color
+
+--
+- investigating OMOS and TAPICC
 
 ---
 
@@ -205,4 +209,4 @@ layout: false
   - PAS: http://unicode.org/uli/pas/
   - Github: [unicode-org/uli-docs](https://github.com/unicode-org/uli-docs)
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-10-17-iuc41-nodeintl)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-11-01-feisgiltt-uli)]
