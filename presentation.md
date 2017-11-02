@@ -210,3 +210,48 @@ layout: false
   - Github: [unicode-org/uli-docs](https://github.com/unicode-org/uli-docs)
 
 .bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-11-01-feisgiltt-uli)]
+
+---
+layout: false
+
+# XLIFF 2.2 ask
+## Top Level <notes>?
+
+```xliff
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+<file id="bundle1">
+<notes><note>Note to translator</note></notes>
+<unit id="translated">
+<segment state="reviewed">
+<source>translated</source>
+</segment>
+</unit>
+</file>
+<file id="bundle2">
+<!-- repeat note… -->
+<notes><note>Note to translator</note></notes>
+</file>
+</xliff>
+```
+
+---
+layout: false
+
+# XLIFF 2.2 ask
+## Top Level <notes> Example
+
+```xliff
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+<notes><note>Note to translator</note></notes>
+<file id="bundle1">
+<unit id="translated">
+<segment state="reviewed">
+<source>translated</source>
+</segment>
+</unit>
+</file>
+</xliff>
+```
+
