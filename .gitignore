@@ -2,3 +2,4 @@
 node_modules
 *.esproj
 .DS_Store
+/out.pdf

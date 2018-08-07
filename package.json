@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "npx st -n. -nc -co"
+    "server": "npx st -n. -nc -co",
+    "pdf": "npx decktape remark http://127.0.0.1:1337/index.html out.pdf"
   },
   "repository": {
     "type": "git",

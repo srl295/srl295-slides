@@ -1,14 +1,21 @@
-My Node slides for IUC41, 2017-10-17 (Tue) S5T2 Intl
+Putting ICU to Work for IUC42, 2018-09-10 Mon S4T2
 ###
 
 Author
 ===
 
 Steven R. Loomis
+Shane Carr
 
 Abstract
 ===
 
+(TBD) 
 
-Node.js has become a popular platform, using JavaScript on the server, or in other environments outside of its traditional role in web browsers. This presentation will discuss the latest status in enabling and making use of the Intl (EcmaScript-402) module support in Node.js, the status of the library ecosystem, and what's next for JavaScript and Node.js globalization with upcoming features slated for future EcmaScript-402 and EcmaScript-262 editions and discuss techniques and best practices for Unicode and international support in Node.js applications.
 
+Hacking
+===
+
+- edit `presentation.md` ( see https://remarkjs.com )
+- `npm run server`  will serve on http://127.0.0.1:1337
+- **while the above server is running**, `npm run pdf` will export to `out.pdf`
