@@ -1,7 +1,7 @@
 layout: true
 
 <div class="lefttxt">Put ICU to Work!</div>
-<div class="bottom">41<sup>st</sup> Internationalization and Unicode Conference • Oct 16<sup>th</sup>, 2017 — 
+<div class="bottom">42<sup>nd</sup> Internationalization and Unicode Conference • Sep 10<sup>th</sup>, 2018 — 
 <a href="https://srl295.github.io">@srl295</a></div>
 ---
 <!-- _background-image: url(img/node1.png) -->
@@ -10,18 +10,18 @@ class: center, middle, whitedrop
 .centersml[![Intl](img/iculogo.png)]
 ## Put ICU to Work!
  
-&nbsp;
 #### Steven R. Loomis, IBM
+#### Shane Carr, Google
 ???
-NOTE: Hey you, yeah you! An `Intl` capable browser is needed.
-I use Safari 10. 
-
 TITLE: Put ICU to Work!
 
 ABSTRACT: 
 
-This tutorial gives attendees everything they need to know to get started with working with text in computer systems: character encoding systems, character sets, Unicode, and text processing, using the International Components for Unicode library (ICU). ICU is a very popular internationalization software solution, and is now hosted by Unicode itself. However, while it vastly simplifies the internationalization of products, there is a learning curve. The goal of this tutorial is to help new users of ICU install and use the library. Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK integration), verification of installation, introduction and detailed usage analysis of ICU's frameworks (normalization, formatting, calendars, collation, transliteration). The tutorial will walk through code snippets and examples to illustrate the common usage models, followed by demonstration applications and discussion of core features and conventions, advanced techniques and how to obtain further information. It is helpful if participants are familiar with Java, C and C++ programming. Issues relating to ICU4C/C++ as well as ICU4J (Java) will be discussed. After the tutorial, participants should be able to install and use ICU for solving their internationalization problems. Topics covered will include packaging of ICU data, integrating ICU into an applications development process, and how to get involved in the ICU development community.
+This tutorial gives attendees everything they need to know to get started with working with text in computer systems: character encoding systems, character sets, Unicode, and text processing, using the International Components for Unicode library (ICU). ICU is a very popular internationalization software solution, and is now hosted by Unicode itself. However, while it vastly simplifies the internationalization of products, there is a learning curve.
 
+The goal of this tutorial is to help new users of ICU install and use the library. Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK integration), verification of installation, introduction and detailed usage analysis of ICU's frameworks (normalization, formatting (including the new fluent API), calendars, collation, transliteration). The tutorial will walk through code snippets and examples to illustrate the common usage models, followed by demonstration applications and discussion of core features and conventions, advanced techniques and how to obtain further information. It is helpful if participants are familiar with Java, C and C++ programming. Issues relating to ICU4C/C++ as well as ICU4J (Java) will be discussed. After the tutorial, participants should be able to install and use ICU for solving their internationalization problems.
+
+Topics covered will include packaging of ICU data, integrating ICU into an application's development process, and how to get involved in the ICU development community.
 
 
 ---
@@ -41,7 +41,7 @@ This tutorial gives attendees everything they need to know to get started with w
  + additional standards
 --
 
-- More than 110,000 characters
+- More than 137,000 characters
 --
 
 - Significant update about once a year
@@ -68,15 +68,11 @@ This tutorial gives attendees everything they need to know to get started with w
 
 ---
 
-# ICU comes home to Unicode
+# I See Unicode
 
-- 1999: [_IBM Classes for Unicode_ becomes the _International Components for Unicode_](http://blog.unicode.org/2016/05/icu-joins-unicode-consortium.html)
-- 2016: ICU is now from Unicode
- - Similar open-source license
- - Hosting transferred from IBM to Unicode (ICU-TC) 
- - Build machines accessible to entire ICU-TC
- - 1-click CLA process – anyone can contribute!
-
+- 1999: _IBM Classes for Unicode_ open-sourced as the _International Components for Unicode_
+- 2016: ICU joins Unicode as [ICU-TC](http://blog.unicode.org/2016/05/icu-joins-unicode-consortium.html)
+- 2018: Development now on [GitHub and Jira](http://blog.unicode.org/2018/07/icu-moves-to-github-and-jira.html)
 ---
 
 
@@ -167,23 +163,26 @@ This tutorial gives attendees everything they need to know to get started with w
 - `icu-support` – technical support and discussion
 - `icu-design` – API proposals by ICU team
 - `icu-announce` –announcements
-- `icu-bugrfe` / icu-commits :  track ICU bugs and commits
 
 ---
 
-# [Bug Reports](https://ssl.icu-project.org/trac)
+# [Issues (Jira)](http://site.icu-project.org/bugs)
 
 .centerbig[![Bug Report](img/bugrpt.png)]
 ---
 
-# CLA
+# Contributing
 
-for [Code Contributions](https://ssl.icu-projecrt.org/trac#cla)
-
-.centerbig[![CLA1](img/cla1.png)]
+1. Open an [issue](http://site.icu-project.org/bugs) in Jira
+2. [Fork](https://github.com/unicode-org/icu/fork) the ICU repo
+3. Write and test your code
+4. Commit your change to your fork
+5. Open a [new Pull Request](https://github.com/unicode-org/icu/pull/new/master)
+6. Sign the CLA when prompted [![CLA assistant](https://cla-assistant.io/readme/badge/unicode-org/icu)](https://cla-assistant.io/unicode-org/icu)
 --
 
-.centerbig[![CLA2](img/cla2.png)]
+7. Bask in your newfound fame and fortune!
+
 ---
 class: center, middle
 
@@ -892,7 +891,7 @@ layout: false
 - Social: @srl295
 - Slides/Contact:  https://git.io/srl295
  - sample code: https://github.com/srl295/icu-demos.git
- - ( tag `iuc41-2017` at press time)
+ - ( tag `2018-09-10-iuc42-icuwork-s4t2` )
 - Email: `srloomis` <i>@</i>  `us.ibm.com`
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2017-10-16-iuc41-icuwork)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2018-09-10-iuc42-icuwork-s4t2)]
