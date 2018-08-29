@@ -256,28 +256,19 @@ template: firstlook
 - (We will use this macro to keep test code more compact)
 ---
 
-# icuhello.cpp (C)
+# s09_test.cpp (C)
 
 ```c
-#include <unicode/uclean.h>
-#include <unicode/ustream.h>
-#include <iostream>
-#include "assertok.h"
+#include <unicode/ustdio.h>
 
 int main(int argc, const char *argv[]) {
-    UErrorCode status = U_ZERO_ERROR;
-    u_init(&status);
-    ASSERT_OK(status);
-    UnicodeString msg(u"Hello, ☃ ");
-
-    std::cout << msg << std::endl;
-
+    u_printf_u(u"This is ICU %s! 😼\n", U_ICU_VERSION);
     return 0;
 }
 ```
 --
 
-# `Hello, ☃`
+# `This is ICU 62.1! 😼`
 --
 
 - _but, let’s actually build this_
@@ -291,7 +282,7 @@ $ brew install icu4c
 --
 
 ```shell
-$ git clone https://github.com/srl295/icu-demos.git
+$ git clone https://github.com/unicode-org/icu-demos.git
 ```
 ???
 on mac…
@@ -306,7 +297,7 @@ $ env PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig  ./configure
 
 ```shell
 $ make && ./icuhello
-Hello, ☃
+This is ICU 62.1! 😼
 ```
 --
 
