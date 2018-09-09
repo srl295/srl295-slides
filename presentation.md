@@ -277,7 +277,7 @@ int main(int argc, const char *argv[]) {
 # Building `icuhello.cpp`
 
 ```shell
-$ brew install icu4c
+$ brew install icu4c pkg-config
 ```
 --
 
@@ -290,25 +290,20 @@ on mac…
 --
 
 ```shell
-$ cd c && aclocal && autoconf
-$ env PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig  ./configure
-```
---
-
-```shell
-$ make && ./icuhello
+$ cd iucsamples/c/s09_test
+$ make check
 This is ICU 62.1! 😼
+everything is OK 🎉
 ```
 --
 
 ### under the hood:
 
+- paths detected via pkg-config
 ```shell
-$ PKG_CONFIG_PATH=/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH
-$ pkg-config icu-i18n icu-io icu-uc --cflags
--I/usr/local/Cellar/icu4c/59.1/include
-$ pkg-config icu-i18n icu-io icu-uc --libs
--L/usr/local/Cellar/icu4c/59.1/lib -licuio -licui18n -licuuc -licudata
+c++ -std=c++11  -I/usr/local/Cellar/icu4c/62.1/include \
+-L/usr/local/Cellar/icu4c/62.1/lib -licuio -licui18n -licuuc \
+-licudata  s09_test.cpp   -o s09_test
 ```
 ---
 name: icuhelloworld.cpp
