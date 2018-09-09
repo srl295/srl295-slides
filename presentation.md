@@ -282,7 +282,7 @@ $ brew install icu4c
 --
 
 ```shell
-$ git clone https://github.com/unicode-org/icu-demos.git
+$ git clone https://github.com/unicode-org/icu-demos.git -b iuc42
 ```
 ???
 on mac…
