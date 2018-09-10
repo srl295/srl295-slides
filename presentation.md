@@ -468,113 +468,9 @@ template: hellomsg.cpp
 
 ---
 
-# Resource Files
-
-## English
-### `Hello, {world}`
-
-## Spanish
-### `¡Hola, {world}!`
-
----
-
-# Resource Files
-
-## Base language (`root.txt`)
-```
-root {
-    hello { "Hello, {world}!" }
-}
-```
-
-## Translated (`es.txt`)
-```
-es {
-    hello { "¡Hola, {world}!" }
-}
-```
-### etc…
-
----
-
-# `bldicures.py`
-
-`bldicures` runs ICU’s `genrb` tool to produce `hellores.dat`
-
-- `root.txt` + `es.txt`  => `hellores.dat`
-
----
-
-# `hellores.cpp`
-### loading the message
-
-```c
-    Locale locale = Locale::getDefault();
-    ResourceBundle resourceBundle("hellores", locale, status);
-    UnicodeString thing = resourceBundle.getStringEx("hello", status);
-    ASSERT_OK(status);
-    std::cout << locale.getName() << " Message: " <<   thing << std::endl;
-```
---
-
-```shell
-$ ./hellores
-en_US Message: Hello, {world}!
-
-$ LC_ALL=es ./hellores
-es Message: ¡Hola, {world}!
-```
----
-
-# `hellores.cpp`
-### Resource based hello
-
-```c
-    // thing = “¡Hola, {world}!”, etc…
-    MessageFormat msg(thing, locale, status);
-    UnicodeString result;
-    msg.format(argnames, arguments, kArgCount, result, status);
-    std::cout << result << std::endl;
-```
---
-
-```
-$ ./hellores
-en_US Message: Hello, {world}!
-Hello, World!
-```
---
-
-```
-$ LC_ALL=es ./hellores
-es Message: ¡Hola, {world}!
-¡Hola, Mundo!
-```
---
-
-```
-$ LC_ALL=zh ./hellores
-zh Message: Hello, {world}!
-Hello, 世界!
-```
-
----
-class: center, middle
-
 # Java
 --
 (ICU4J)
----
-
-# ICU4J Resource Bundles
-
-- Can use ICU4C binary bundles via `UResourceBundle`
---
-
-- Most Java apps will just use built-in `ListResourceBundle`
---
-
-- (See [Java’s docs](https://docs.oracle.com/javase/9/docs/api/java/util/ListResourceBundle.html))
 ---
 
 # ICU4J : Hello, Maven
@@ -583,7 +479,7 @@ class: center, middle
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
-			<version>59.1</version>
+			<version>62.1</version>
 		</dependency>
 ```
 
