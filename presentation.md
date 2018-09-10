@@ -466,32 +466,6 @@ template: hellomsg.cpp
 
 ---
 
-# Break Iteration
-
-- Unicode standards + tailoring
-- [UAX#14 line breaking](https://www.unicode.org/reports/tr14/)
-- [UAX#29 sentence, grapheme cluster, word](https://www.unicode.org/reports/tr29/)
-
----
-
-# Break Iteration Sample
-
-```c
-
-  BreakIterator *wordIterator = BreakIterator::createWordInstance(locale, status);
-  breakIterator->setText(u"Hello World");
-  breakIterator->current(); // 0
-  breakIterator->next(); // 5
-  breakIterator->next(); // 6
-  breakIterator->next(); // 11
-  breakIterator->next(); // -1 == DONE
-
-```
-
-Sample: `s23_brki.cpp`
-
----
-
 # Java
 --
 (ICU4J)
@@ -594,6 +568,33 @@ The territory of Unknown Region has 0 persons.
 
 # CLDR Plurals
 
+--
+
+ - English: 0 dogs, 1 dog, 2 dogs, 3 dogs, 4 dogs
+--
+
+ - Welsh: 0 cŵn, 
+???
+kun
+--
+1 ci, 
+???
+ki
+--
+2 gi, 
+???
+--
+3 ci, 
+???
+--
+4 ci
+???
+--
+
+---
+
+# CLDR Plurals
+
 .centerbig[![plurals](img/plurals.png)]
 
 ---
@@ -674,6 +675,32 @@ Via Message String:
 ```
 
 *Sample code: s99_compact.cpp*
+
+---
+
+# Break Iteration
+
+- Unicode standards + tailoring
+- [UAX#14 line breaking](https://www.unicode.org/reports/tr14/)
+- [UAX#29 sentence, grapheme cluster, word](https://www.unicode.org/reports/tr29/)
+
+---
+
+# Break Iteration Sample
+
+```c
+
+  BreakIterator *wordIterator = BreakIterator::createWordInstance(locale, status);
+  breakIterator->setText(u"Hello World");
+  breakIterator->current(); // 0
+  breakIterator->next(); // 5
+  breakIterator->next(); // 6
+  breakIterator->next(); // 11
+  breakIterator->next(); // -1 == DONE
+
+```
+
+Sample: `s23_brki.cpp`
 
 ---
 
