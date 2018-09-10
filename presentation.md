@@ -340,9 +340,7 @@ c++ -std=c++11  -I/usr/local/Cellar/icu4c/62.1/include \
 ---
 name: icuhelloworld.c
 
-# `icuhelloworld.cpp`
-
-aka *s13a_hello.cpp*
+# `s13a_hello.cpp`
 
 ```c
 #include <unicode/errorcode.h>
@@ -370,7 +368,7 @@ template: icuhelloworld.c
 template: icuhelloworld.cpp
 
 ```shell
-$ LC_ALL=es ./icuhelloworld
+$ LC_ALL=es ./s13a_hello
 ```
 
 # `Hello, Mundo`
@@ -379,11 +377,11 @@ $ LC_ALL=es ./icuhelloworld
 # `icuhelloworld.cpp`
 
 ```shell
-$ LC_ALL=mt ./icuhelloworld
+$ LC_ALL=mt ./s13a_hello
 ```
 ## Hello, Dinja
 ```shell
-$ LC_ALL=zh ./icuhelloworld
+$ LC_ALL=zh ./s13a_hello
 ```
 ## Hello, 世界
 ---
@@ -465,6 +463,32 @@ template: hellomsg.cpp
     std::cout << "es: " << result_es << std::endl;
 ```
 ### `es: ¡Hola, Mundo!`
+
+---
+
+# Break Iteration
+
+- Unicode standards + tailoring
+- [UAX#14 line breaking](https://www.unicode.org/reports/tr14/)
+- [UAX#29 sentence, grapheme cluster, word](https://www.unicode.org/reports/tr29/)
+
+---
+
+# Break Iteration Sample
+
+```c
+
+  BreakIterator *wordIterator = BreakIterator::createWordInstance(locale, status);
+  breakIterator->setText(u"Hello World");
+  breakIterator->current(); // 0
+  breakIterator->next(); // 5
+  breakIterator->next(); // 6
+  breakIterator->next(); // 11
+  breakIterator->next(); // -1 == DONE
+
+```
+
+Sample: `s23_brki.cpp`
 
 ---
 
