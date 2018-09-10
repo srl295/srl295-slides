@@ -226,6 +226,7 @@ template: firstlook
 
 ### `UErrorCode status = U_ZERO_ERROR;`
 - Error code is a fill-in, but must be initialized
+- If in C++, `icu::ErrorCode` is available (example on next slide)
 ---
 template: firstlook
 
@@ -238,8 +239,38 @@ template: firstlook
 - TRUE if there was no error
 ---
 
+# Error codes in C++
+
+No need to initialize!  Less prone to error:
+
+```cpp
+#include <unicode/…>
+
+int main() {
+  icu::ErrorCode status;
+  u_init(status);
+  if (status.isFailure()) {
+    return 1;
+  }
+  return 0;
+}
+```
+
+---
+
 # `ASSERT_OK()`
 
+C++ version:
+
+```cpp
+#define ASSERT_OK(status) \
+ if(status.isFailure()) { \
+     puts(status.errorName()); \
+     return 1; \
+ }
+```
+
+Plain C version:
 ```c
 #define ASSERT_OK(status) \
  if(U_FAILURE(status)) { \
@@ -254,9 +285,10 @@ template: firstlook
 --
 
 - (We will use this macro to keep test code more compact)
+
 ---
 
-# s09_test.cpp (C)
+# s09_test.c
 
 ```c
 #include <unicode/ustdio.h>
@@ -274,7 +306,7 @@ int main(int argc, const char *argv[]) {
 - _but, let’s actually build this_
 ---
 
-# Building `icuhello.cpp`
+# Building `s09_test.c`
 
 ```shell
 $ brew install icu4c pkg-config
@@ -303,32 +335,35 @@ everything is OK 🎉
 ```shell
 c++ -std=c++11  -I/usr/local/Cellar/icu4c/62.1/include \
 -L/usr/local/Cellar/icu4c/62.1/lib -licuio -licui18n -licuuc \
--licudata  s09_test.cpp   -o s09_test
+-licudata  s09_test.c   -o s09_test
 ```
 ---
-name: icuhelloworld.cpp
+name: icuhelloworld.c
 
 # `icuhelloworld.cpp`
 
+aka *s13a_hello.cpp*
+
 ```c
-#include <unicode/locdspnm.h>
+#include <unicode/errorcode.h>
+#include <unicode/locid.h>
+#include <unicode/ustdio.h>
 #include <unicode/ustream.h>
 #include <iostream>
-#include "assertok.h"
 
 int main() {
-    UErrorCode status = U_ZERO_ERROR;
-    LocalPointer<LocaleDisplayNames> 
-        names(LocaleDisplayNames::createInstance(Locale::getDefault(), ULDN_DIALECT_NAMES));
-    if(!names.isValid()) return 1; // hereafter: ASSERT_VALID(names);
-    UnicodeString world;
-    names->regionDisplayName("001", world);
-    std::cout << "Hello, " << world << std::endl;
-    return 0;
+  icu::ErrorCode status;
+  icu::Locale locale("und_001");
+  icu::UnicodeString world;
+  locale.getDisplayCountry(world);
+  ASSERT_OK(status);
+
+  std::cout << "Hello, " << world << "!" << std::endl;
+  return 0;
 }
 ```
 ---
-template: icuhelloworld.cpp
+template: icuhelloworld.c
 
 # `Hello, World`
 ---
@@ -666,16 +701,68 @@ The territory of Brazil has 205,824,000 persons
 
 ---
 
-# Sorting it all out
+# Units and Currencies
 
-- binary comparison inadequate
-- order varies by language (Danish ‘aa…’ follows ‘z…’)
-- need multiple-level collation
+```txt
+The room measures
+{0, plural, one{1 meter} other{# meters}}
+wide.
+```
+
+```
+The room measures 0 meters wide.
+The room measures 1 meter wide.
+The room measures 0 meters wide.
+```
+
+But with ICU 62 message strings, ICU can handle measurement units without having to enumerate all the plural forms yourself!
+
+Use the "number" type instead of "plural" type and pass a number skeleton:
+
+```txt
+The room measures
+{0, number, ::measure-unit/length-meter unit-width-full-name}
+wide.
+```
+
+Also works for currencies.
+
+*Sample code: s88_units.cpp*
+
+---
+
+# Compact Notation
+
+![:img 5.4B views, 50%](https://snag.gy/gNUbt8.jpg)
+
+Programmatically:
+
+```cpp
+std::cout
+  << icu::number::NumberFormatter::with()
+    .notation(icu::number::Notation::compactShort())
+    .locale("en-us")
+    .formatDouble(quantity, status)
+    .toString(status)
+  << std::endl;
+```
+
+Via Message String:
+
+```
+{0, number, ::compact-short}
+```
+
+*Sample code: s99_compact.cpp*
 
 ---
 
 
-# Collators
+# Collators (Text Sorting)
+ 
+- binary comparison inadequate
+- order varies by language (Danish ‘aa…’ follows ‘z…’)
+- need multiple-level collation
 
 .leftside[## Uses:
  - comparing
@@ -777,6 +864,10 @@ _“It's too big”_
  Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
 (May not reduce data size)
 
+- *2018 Bonus:* More/better tooling for data slicing is in development!
+  - Subscribe to the [_icu-design_](http://site.icu-project.org/contacts) mailing list for updates
+  - Bug to follow: [ICU-10923](https://unicode-org.atlassian.net/browse/ICU-10923)
+
 ---
 
 # Data Changes
@@ -870,14 +961,29 @@ Spotify
 ---
 layout: false
 
-# Thanks/Q&A
+### Action for You: Join our mailing lists!
 
-### [http://icu-project.org](https://icu-project.org)
+![:big 150%](http://site.icu-project.org/contacts)
+
+--
+
+<hr/>
+
+![:big 150%](Sample Code: http://bit.ly/iuc42-icu-samples)
+
+#### Presenter: Steven Loomis
 
 - Social: @srl295
-- Slides/Contact:  https://git.io/srl295
- - sample code: https://github.com/srl295/icu-demos.git
- - ( tag `2018-09-10-iuc42-icuwork-s4t2` )
-- Email: `srloomis` <i>@</i>  `us.ibm.com`
+- Web site: https://git.io/srl295
+- Email: `srloomis`<i>@</i>`us.ibm.com`
+
+#### Presenter: Shane Carr
+
+- Social: @sffc or @_sffc
+- Web site: https://sffc.xyz
+- Email: `sffc`<i>@</i>`google.com` / `shane`<i>@</i>`unicode.org`
+
+Have a nice day!
+
 
 .bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2018-09-10-iuc42-icuwork-s4t2)]

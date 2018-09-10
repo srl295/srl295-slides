@@ -146,6 +146,15 @@
   <script src="js/remark-latest.min.js">
 </script>
   <script>
+      // https://github.com/gnab/remark/issues/72#issuecomment-419693263
+      remark.macros.img = function (altText, width) {
+        var url = this;
+        return '<img alt="' + altText + '" src="' + url + '" style="width: ' + width + '" />';
+      };
+      remark.macros.big = function (scale) {
+        var content = this;
+        return '<span style="font-size:' + scale + '">' + content + '</span>';
+      };
       var slideshow = remark.create({
           sourceUrl: 'presentation.md'
       });
