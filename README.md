@@ -1,4 +1,4 @@
-Putting ICU to Work for IUC42, 2018-09-10 Mon S4T2
+Putting ICU to Work for IUC43, 2019-09-16-icuwork-s1t3
 ###
 
 Author
