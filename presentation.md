@@ -72,7 +72,7 @@ ICU combines up-to-date correctness with real-world performance.
 - Requirements vary widely across languages & countries
 - Sorting
 - Text searching
-- Bidirectional text processing and complex text layout
+- Bidirectional text processing
 - Date/time/number/currency formatting
 - Codepage conversion
 - …many more
@@ -150,33 +150,48 @@ ICU combines up-to-date correctness with real-world performance.
 - `dnf install libicu-devel`
 
 ## Maven and friends: (J)
-- Group: *com.ibm.icu*
-- artifactId: *icu4j*
+- group: *`com.ibm.icu`*
+- artifactId: *`icu4j`*
+
+???
+The easiest way to build ICU is to let someone else build it. 
 
 ---
 
 # [ICU Userguide](http://userguide.icu-project.org)
 
 .centerbig[![User’s Guide](img/userguide.png)]
+???
+General topics and specific articles.
+The User’s Guide is planned to move to Markdown, which
+should make the content easier to keep up to date.
 
 ---
 
-# [API Docs](http://icu-project.org)
+# [API Docs](https://unicode-org.github.io/icu-docs/#api-docs)
 
 .centerbig[![API Docs](img/apidocs.png)]
+???
+- Full class and function documentation
+
 ---
 
 # [API Change Report](http://site.icu-project.org/download)
 
 .centerbig[![Change Report](img/changerpt.png)]
+???
+Shows which APIs were added, promoted, to stable, etc. in each release.
+
 ---
 
 # Mailing Lists
 
 ##  http://site.icu-project.org/contacts
-- `icu-support` – technical support and discussion
-- `icu-design` – API proposals by ICU team
-- `icu-announce` –announcements
+- `icu-support` – Technical support and discussion
+- `icu-design` – API proposal discussion
+- `icu-announce` – Low-volume announcements list
+???
+At least subscribe to the announce list so you can be notified of new ICU versions and changes.
 
 ---
 
