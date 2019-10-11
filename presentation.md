@@ -33,20 +33,32 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 
 --
 
-- 1,400 pages
+- 3,639 pages (core+charts)
 --
  + Annexes
 --
- + additional standards
---
 
-- More than 137,000 characters
+- More than 143,000 characters
 --
 
 - Significant update about once a year
 --
 
 - 80+ character properties,many multi-valued
+--
+
+- Additional standards and geopolitical requirements
+ - CLDR, ISO, TZ, …
+???
+Locale data, new ISO language/territory changes, Time zone changes
+
+--
+
+- Good vs. fast
+
+???
+ICU combines up-to-date correctness with real-world performance.
+
 ---
 
 # Unicode covers the world 🌍
@@ -64,6 +76,9 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 - Date/time/number/currency formatting
 - Codepage conversion
 - …many more
+
+???
+
 
 ---
 
@@ -104,7 +119,7 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 
 # Benefits of ICU 
 
-- Mature, widely used (all IBM brands and operating systems), up-to-date set of C/C++ and Java libraries
+- Mature, widely used, up-to-date set of C/C++ and Java libraries
  - Basis for Java 1.1 internationalization, but goes far beyond Java 1.1
  - Team continues to work on improving and monitoring performance.
 - Very portable – identical results on all platforms/programming languages
@@ -113,7 +128,7 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
  - Wrappers: D/C#/PHP/Python/…
 - Customizable & Modular
   - Open source (since 1999) – but non-restrictive
-  - Contributions from many parties (IBM, Google, Apple, Microsoft, ...)
+  - Contributions from many parties (IBM, Google, Apple, Microsoft, …)
 - Sponsored by Unicode
 
 ---
@@ -123,7 +138,7 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 ## Main site: http://icu-project.org/
 - Downloads, API references, Mailing list, Bug tracking
 - Userguide: http://userguide.icu-project.org
- - User's guide with examples
+ - User’s guide with examples
 
 ---
 
@@ -801,7 +816,7 @@ En la región de “Angola” hay 18.565.300 personas.
 
 # Packaging:
 --
-_“It's too big”_
+_“It’s too big”_
 --
 
 - Customize data http://userguide.icu-project.org/icudata
@@ -810,7 +825,7 @@ _“It's too big”_
  Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
 (May not reduce data size)
 
-- *2018 Bonus:* More/better tooling for data slicing is in development!
+- *2019 Bonus:* More/better tooling for data slicing is available!
   - Subscribe to the [_icu-design_](http://site.icu-project.org/contacts) mailing list for updates
   - Bug to follow: [ICU-10923](https://unicode-org.atlassian.net/browse/ICU-10923)
 
