@@ -343,7 +343,7 @@ $ brew install icu4c pkg-config
 --
 
 ```shell
-$ git clone https://github.com/unicode-org/icu-demos.git -b iuc42
+$ git clone https://github.com/unicode-org/icu-demos.git -b iuc43
 ```
 ???
 on mac…
@@ -353,7 +353,7 @@ on mac…
 ```shell
 $ cd iucsamples/c/s09_test
 $ make check
-This is ICU 62.1! 😼
+This is ICU 64.2! 😼
 everything is OK 🎉
 ```
 --
@@ -362,9 +362,7 @@ everything is OK 🎉
 
 - paths detected via pkg-config
 ```shell
-c++ -std=c++11  -I/usr/local/Cellar/icu4c/62.1/include \
--L/usr/local/Cellar/icu4c/62.1/lib -licuio -licui18n -licuuc \
--licudata  s09_test.c   -o s09_test
+cc -I/usr/local/Cellar/icu4c/64.2/include -o s09_test s09_test.c -L/usr/local/Cellar/icu4c/64.2/lib -licuio -licui18n -licuuc -licudata
 ```
 ---
 name: icuhelloworld.c
@@ -392,7 +390,7 @@ int main() {
 ---
 template: icuhelloworld.c
 
-# `Hello, World`
+# `Hello, World!`
 ---
 template: icuhelloworld.cpp
 
@@ -400,7 +398,7 @@ template: icuhelloworld.cpp
 $ LC_ALL=es ./s13a_hello
 ```
 
-# `Hello, Mundo`
+# `Hello, Mundo!`
 ---
 
 # `icuhelloworld.cpp`
@@ -408,11 +406,11 @@ $ LC_ALL=es ./s13a_hello
 ```shell
 $ LC_ALL=mt ./s13a_hello
 ```
-## Hello, Dinja
+## Hello, Dinja!
 ```shell
 $ LC_ALL=zh ./s13a_hello
 ```
-## Hello, 世界
+## Hello, 世界!
 ---
 class: center, middle
 
@@ -420,11 +418,11 @@ class: center, middle
 ???
 What are we doing?!
 --
- _string concatenation!!!_ 
+What if we want to change **“Hello”**?
 
 ---
 
-# No String Concatenation 🙀
+# String Concatenation 🙀
 
 - Order is different for different languages, can't just concatenate strings.
 --
@@ -506,7 +504,7 @@ template: hellomsg.cpp
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
-			<version>62.1</version>
+			<version>65.1</version>
 		</dependency>
 ```
 
@@ -575,9 +573,9 @@ template: BadMessage.java
 
 ```
 Message: The territory of {territory} has {population} persons.
-The territory of Afghanistan has 33,332,000 persons.
-The territory of Albania has 3,038,590 persons.
-The territory of Algeria has 40,263,700 persons.
+The territory of Afghanistan has 34,124,800 persons.
+The territory of Albania has 3,047,990 persons.
+The territory of Algeria has 40,969,400 persons.
 ```
 
  - ok so far
@@ -665,7 +663,7 @@ The room measures 1 meter wide.
 The room measures 0 meters wide.
 ```
 
-But with ICU 62 message strings, ICU can handle measurement units without having to enumerate all the plural forms yourself!
+But with ICU message strings, ICU can handle measurement units without having to enumerate all the plural forms yourself!
 
 Use the "number" type instead of "plural" type and pass a number skeleton:
 
@@ -678,6 +676,18 @@ wide.
 Also works for currencies.
 
 *Sample code: s88_units.cpp*
+
+???
+Try:
+
+```
+$ env LC_ALL=el make check
+./s88_units
+The room measures 1 meter wide.
+The room measures 5 meters wide.
+The room measures 1 μέτρο wide.
+The room measures 5 μέτρα wide.
+```
 
 ---
 
@@ -841,8 +851,7 @@ _“It’s too big”_
 (May not reduce data size)
 
 - *2019 Bonus:* More/better tooling for data slicing is available!
-  - Subscribe to the [_icu-design_](http://site.icu-project.org/contacts) mailing list for updates
-  - Bug to follow: [ICU-10923](https://unicode-org.atlassian.net/browse/ICU-10923)
+  - Details: [userguide.icu-project.org/icudata](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md)
 
 ---
 
@@ -882,7 +891,7 @@ _“It’s too big”_
 
 --
 
-- “`08-04-2017`” may not parse as “`8 kwi 2017`”
+- “`08-04-2019`” may not parse as “`8 kwi 2019`”
 --
 
 - DON’T send localized data across the network between programs
@@ -897,7 +906,7 @@ _“It’s too big”_
 
 - DO send and store non-localized format
  - Binary: 0x12345678
- - “Neutral” - ISO 8601 - “`2017-04-08`”
+ - “Neutral” - ISO 8601 - “`2019-04-08`”
 --
 
 - REMEMBER ॳ may not be a letter
@@ -945,21 +954,21 @@ layout: false
 
 <hr/>
 
-![:big 150%](Sample Code: http://bit.ly/iuc42-icu-samples)
+![:big 150%](Sample Code: [bit.ly/iuc43-icu-samples](https://bit.ly/iuc43-icu-samples))
 
 #### Presenter: Steven Loomis
 
 - Social: @srl295
-- Web site: https://git.io/srl295
+- Web site: [git.io/srl295](https://git.io/srl295)
 - Email: `srloomis`<i>@</i>`us.ibm.com`
 
 #### Presenter: Shane Carr
 
 - Social: @sffc or @_sffc
-- Web site: https://sffc.xyz
+- Web site: [https://sffc.xyz](https://sffc.xyz)
 - Email: `sffc`<i>@</i>`google.com` / `shane`<i>@</i>`unicode.org`
 
 Have a nice day!
 
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2018-09-10-iuc42-icuwork-s4t2)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2019-09-16-iuc43-icuwork-s1t3)]
