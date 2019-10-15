@@ -437,7 +437,7 @@ whom + "’s " + what + " is on the " + where
 ```
 --
 
-### La .xb[pluma] de .xa[mi tía] está en la tabla.
+### La .xb[pluma] de .xa[mi tía] está sobre la mesa.
 ---
 
 # Pattern Syntax
