@@ -1,7 +1,7 @@
 layout: true
 
 <div class="lefttxt">Put ICU to Work!</div>
-<div class="bottom">43<sup>rd</sup> Internationalization and Unicode Conference • Sep 16<sup>th</sup>, 2019 — 
+<div class="bottom">43<sup>rd</sup> Internationalization and Unicode Conference • Oct 16<sup>th</sup>, 2019 — 
 <a href="https://srl295.github.io">@srl295</a></div>
 ---
 <!-- _background-image: url(img/node1.png) -->
@@ -138,6 +138,7 @@ ICU combines up-to-date correctness with real-world performance.
 ## Main site: http://icu-project.org/
 - Downloads, API references, Mailing list, Bug tracking
 - Userguide: http://userguide.icu-project.org
+ - Moving soon to GitHub Pages
  - User’s guide with examples
 
 ---
@@ -329,7 +330,7 @@ int main(int argc, const char *argv[]) {
 ```
 --
 
-# `This is ICU 62.1! 😼`
+# `This is ICU 64.2! 😼`
 --
 
 - _but, let’s actually build this_
@@ -504,7 +505,7 @@ template: hellomsg.cpp
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
-			<version>65.1</version>
+			<version>64.2</version>
 		</dependency>
 ```
 
@@ -839,19 +840,33 @@ En la región de “Angola” hay 18.565.300 personas.
 - (see docs for limited exceptions)
 ---
 
-# Packaging:
+# ICU Data File
+
+- aka, `icudt64l.dat`
+- 20MB+ of data to support ICU's features
+--
+
+.centermed[![horizontal and vertical data](img/features_locales.svg)]
+
+---
+
+# Packaging
 --
 _“It’s too big”_
 --
 
-- Customize data http://userguide.icu-project.org/icudata
+ICU 64 Data Build Tool
+
+- Slice data by feature and locale
+- [Read the Docs](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md), and attend Shane's session tomorrow
+
+Other Customization
+
+- Repackage ICU data http://userguide.icu-project.org/icudata
 - Repackage ICU4C Code http://userguide.icu-project.org/packaging
 
  Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
-(May not reduce data size)
-
-- *2019 Bonus:* More/better tooling for data slicing is available!
-  - Details: [userguide.icu-project.org/icudata](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md)
+ - (Note: removes code but not data)
 
 ---
 
