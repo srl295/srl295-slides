@@ -446,7 +446,7 @@ whom + "’s " + what + " is on the " + where
 ### `en:` .xa[`{whom}`]`’s` .xb[`{what}`] `is on the {where}.`
 --
 
-### `es:` .xb[`{what}`] `de` .xa[`{whom}`] `está en la {where}.`
+### `es:` .xb[`{what}`] `de` .xa[`{whom}`] `está sobre la {where}.`
 --
 
 ## Or, avoid sentences entirely
