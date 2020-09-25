@@ -433,8 +433,11 @@ int main(int argc, const char *argv[]) {
 --
 
 ```shell
-$ git clone https://github.com/unicode-org/icu-demos.git
+git clone https://github.com/unicode-org/icu-demos.git
+cd icu-demos/iucsamples/c/s09_test
+make check
 ```
+
 ???
 
 ```shell
@@ -446,7 +449,7 @@ git clone https://github.com/unicode-org/icu-demos.git --reference-if-able /src/
 ```shell
 $ cd iucsamples/c/s09_test
 $ make check
-This is ICU 64.2! 😼
+This is ICU 68.1! 😼
 everything is OK 🎉
 ```
 --
@@ -455,7 +458,7 @@ everything is OK 🎉
 
 - paths detected via pkg-config
 ```shell
-cc -I/usr/local/Cellar/icu4c/64.2/include -o s09_test s09_test.c -L/usr/local/Cellar/icu4c/64.2/lib -licuio -licui18n -licuuc -licudata
+cc -I/home/build/install/include -o s09_test s09_test.c -L/home/build/install/lib -licuio -licui18n -licuuc -licudata
 ```
 ---
 name: icuhelloworld.c
