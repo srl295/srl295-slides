@@ -1,7 +1,7 @@
 layout: true
 
 <div class="lefttxt">Put ICU to Work!</div>
-<div class="bottom">43<sup>rd</sup> Internationalization and Unicode Conference • Oct 16<sup>th</sup>, 2019 — 
+<div class="bottom">44<sup>th</sup> Internationalization and Unicode Conference • Oct 14<sup>th</sup>, 2020 — 
 <a href="https://srl295.github.io">@srl295</a></div>
 ---
 <!-- _background-image: url(img/node1.png) -->
@@ -10,12 +10,13 @@ class: center, middle, whitedrop
 .centersml[![Intl](img/iculogo.png)]
 ## Put ICU to Work!
  
-#### Steven R. Loomis, IBM
-#### Shane Carr, Google
+#### Steven R. Loomis
 ???
+Thanks also to Shane Carr
+
 TITLE: Put ICU to Work!
 
-ABSTRACT: 
+ABSTRACT:
 
 This tutorial gives attendees everything they need to know to get started with working with Unicode text in computer systems using the International Components for Unicode library (ICU). ICU is a very popular internationalization solution, and is hosted by Unicode itself. While it vastly simplifies the internationalization of products, there can be a learning curve.
 
@@ -95,14 +96,14 @@ ICU combines up-to-date correctness with real-world performance.
 .leftside[
 - Breaks: word, line, …
 - Formatting
- - Date & time
- - Durations
- - Messages
- - Numbers & currencies
- - Plurals
+  - Date & time
+  - Durations
+  - Messages
+  - Numbers & currencies
+  - Plurals
 - Transforms
- - Normalization
- - Casing
+  - Normalization
+  - Casing
 - Transliterations]
 .rightside[
 - Unicode text handling
@@ -117,15 +118,15 @@ ICU combines up-to-date correctness with real-world performance.
 
 ---
 
-# Benefits of ICU 
+# Benefits of ICU
 
 - Mature, widely used, up-to-date set of C/C++ and Java libraries
- - Basis for Java 1.1 internationalization, but goes far beyond Java 1.1
- - Team continues to work on improving and monitoring performance.
+  - Basis for Java 1.1 internationalization, but goes far beyond Java 1.1
+  - Team continues to work on improving and monitoring performance.
 - Very portable – identical results on all platforms/programming languages
- - C/C++ (ICU4C): many platforms/compilers
- - Java (ICU4J): Oracle Java SE, IBM JRE, OpenJDK, Android
- - Wrappers: D/C#/PHP/Python/…
+  - C/C++ (ICU4C): many platforms/compilers
+  - Java (ICU4J): Oracle Java SE, IBM JRE, OpenJDK, Android
+  - Wrappers: D/C#/PHP/Python/…
 - Customizable & Modular
   - Open source (since 1999) – but non-restrictive
   - Contributions from many parties (IBM, Google, Apple, Microsoft, …)
@@ -135,33 +136,50 @@ ICU combines up-to-date correctness with real-world performance.
 
 # Where do I get ICU?
 
-## Main site: http://icu-project.org/
+## Main site: https://icu-project.org/
+
 - Downloads, API references, Mailing list, Bug tracking
-- Userguide: http://userguide.icu-project.org
- - Moving soon to GitHub Pages
- - User’s guide with examples
+- Userguide: https://unicode-org.github.io/icu/
+  - Now in Markdown, part of the ICU code
+  - User’s guide with examples
 
 ---
 
 # Prepackaged ICU
 
 ## Package Managers (C)
+
 - `brew install icu4c`
 - `apt-get install libicu-dev`
 - `dnf install libicu-devel`
 
 ## Maven and friends: (J)
+
 - group: *`com.ibm.icu`*
 - artifactId: *`icu4j`*
 
 ???
-The easiest way to build ICU is to let someone else build it. 
+The easiest way to build ICU is to let someone else build it.
 
 ---
 
 # [ICU Userguide](http://userguide.icu-project.org)
 
-.centerbig[![User’s Guide](img/userguide.png)]
+Now in Markdown
+
+> ### Overview
+>
+> `FormattedValue` is an abstraction for localized strings with attributes
+> returned by a number of ICU formatters.  APIs for `FormattedValue` are available
+> in Java, C++, and C.  For more details and a list of all implementing classes,
+> refer to the API docs:
+>
+> - [C++ `FormattedValue`](https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/classicu_1_1FormattedValue.html)
+> - [C `UFormattedValue`](https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/globals_u.html) -- search for "resultAsValue"
+> - [Java `FormattedValue`](https://unicode-org.github.io/icu-docs/apidoc/released/icu4j/com/ibm/icu/text/FormattedValue.html)
+
+[Fork and edit](https://github.com/unicode-org/icu/blob/master/docs/userguide/format_parse/formatted_value.md)
+
 ???
 General topics and specific articles.
 The User’s Guide is planned to move to Markdown, which
@@ -217,6 +235,80 @@ At least subscribe to the announce list so you can be notified of new ICU versio
 class: center, middle
 
 # And now, `code`
+
+---
+
+# For the demo
+
+I'm using these 2 docker images. Built with:
+
+```shell
+docker build https://github.com/unicode-org/icu-docker.git#:dockerfiles/ubuntu -t icu-build:ubuntu
+# java TBD
+```
+
+You can run them with:
+
+```shell
+docker run --rm -it srl295/icu-build:ubuntu
+# Java TBD
+```
+
+???
+I'm actually going to run:
+
+```
+docker run --rm -it  -v ${HOME}/.ccache:/home/build/.ccache -v ${HOME}/src:/src:ro srl295/icu-build:ubuntu
+```
+
+… so that I can not have to checkout everything over the network.
+
+---
+
+# Building ICU4C
+
+- make sure git-lfs is installed, and fasten your seatbelts…
+
+```shell
+git clone https://github.com/unicode-org/icu.git
+mkdir ~/build
+cd ~/build
+~/icu/icu4c/source/configure --enable-release --disable-debug --enable-rpath --prefix=${HOME}/install
+make -j2 all &&
+make -j2 pcheck  && # parallel tests
+make -j2 install
+````
+
+test it out
+
+```shell
+~/install/bin/icuinfo
+```
+
+config
+
+```shell
+export PATH=${PATH}:${HOME}/install/bin/:${HOME}/install/sbin
+export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${HOME}/install/lib/pkgconfig
+export LD_LIBRARY_PATH=${PATH}:${HOME}/install/lib
+```
+
+???
+
+To save bandwidth I do
+```
+git clone https://github.com/unicode-org/icu.git --reference-if-able=/src/icu
+```
+
+---
+
+# Pre-packaged ICU4C
+
+```shell
+$ brew install icu4c pkg-config # mac: brew.sh
+$ apt-get install libicu-dev # ubundu|debian
+$ dnf install libicu-devel # fedora|rhel
+```
 
 ---
 
@@ -338,16 +430,16 @@ int main(int argc, const char *argv[]) {
 
 # Building `s09_test.c`
 
-```shell
-$ brew install icu4c pkg-config
-```
 --
 
 ```shell
-$ git clone https://github.com/unicode-org/icu-demos.git -b iuc43
+$ git clone https://github.com/unicode-org/icu-demos.git
 ```
 ???
-on mac…
+
+```shell
+git clone https://github.com/unicode-org/icu-demos.git --reference-if-able /src/icu-demos
+``
 
 --
 
@@ -975,15 +1067,11 @@ layout: false
 
 - Social: @srl295
 - Web site: [git.io/srl295](https://git.io/srl295)
-- Email: `srloomis`<i>@</i>`us.ibm.com`
-
-#### Presenter: Shane Carr
-
-- Social: @sffc or @_sffc
-- Web site: [https://sffc.xyz](https://sffc.xyz)
-- Email: `sffc`<i>@</i>`google.com` / `shane`<i>@</i>`unicode.org`
+- Email: `srl295`<i>@</i>`gmail.com`
 
 Have a nice day!
 
+- thank you also to Shane Carr for past help with this
+presentation!
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2019-09-16-iuc43-icuwork-s1t3)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2020-10-14-iuc44-icuwork-s1t3)]
