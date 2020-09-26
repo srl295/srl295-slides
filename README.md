@@ -6,7 +6,7 @@ Presentation slides for the 44th [Internationalization and Unicode® Conference]
 Author
 ===
 
-Steven R. Loomis
+[Steven R. Loomis—@srl295](https://github.com/srl295)
 
 Sample Code
 ===
@@ -39,3 +39,6 @@ Hacking
 Thanks
 ===
 Past editor: Shane Carr
+
+-----
+[`bit.ly/iuc44-icu`](http://bit.ly/iuc44-icu) redirects here.

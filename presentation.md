@@ -1089,12 +1089,11 @@ layout: false
 
 ![:big 150%](http://site.icu-project.org/contacts)
 
---
+---
 
-<hr/>
+![:big 150%](Sample Code: <https://bit.ly/iuc44-icu>)
 
-
-![:big 150%](Sample Code: [bit.ly/iuc44-icu-samples](https://bit.ly/iuc44-icu-samples))
+.rightmed[![Intl](img/qr.png)]
 
 #### Presenter: Steven Loomis
 
