@@ -240,18 +240,13 @@ class: center, middle
 
 # For the demo
 
-I'm using these 2 docker images. Built with:
-
-```shell
-docker build https://github.com/unicode-org/icu-docker.git#:dockerfiles/ubuntu -t icu-build:ubuntu
-# java TBD
-```
+I'm using these 2 docker images.
 
 You can run them with:
 
 ```shell
-docker run --rm -it srl295/icu-build:ubuntu
-# Java TBD
+docker run --rm -it srl295/icu-demo:ubuntu
+docker run --rm -it srl295/icu-demo:fedora-j
 ```
 
 ???
@@ -262,6 +257,11 @@ docker run --rm -it  -v ${HOME}/.ccache:/home/build/.ccache -v ${HOME}/src:/src:
 ```
 
 … so that I can not have to checkout everything over the network.
+???
+
+docker build https://github.com/unicode-org/icu-docker.git#:dockerfiles/ubuntu -t icu-build:ubuntu
+docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j -t srl295/icu-build:fedora-j
+
 
 ---
 
@@ -273,16 +273,9 @@ docker run --rm -it  -v ${HOME}/.ccache:/home/build/.ccache -v ${HOME}/src:/src:
 git clone https://github.com/unicode-org/icu.git
 mkdir ~/build
 cd ~/build
-~/icu/icu4c/source/configure --enable-release --disable-debug --enable-rpath --prefix=${HOME}/install
+~/icu/icu4c/source/configure --prefix=${HOME}/install
 make -j2 all &&
-make -j2 pcheck  && # parallel tests
 make -j2 install
-````
-
-test it out
-
-```shell
-~/install/bin/icuinfo
 ```
 
 config
@@ -291,6 +284,12 @@ config
 export PATH=${PATH}:${HOME}/install/bin/:${HOME}/install/sbin
 export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${HOME}/install/lib/pkgconfig
 export LD_LIBRARY_PATH=${PATH}:${HOME}/install/lib
+```
+
+test it out
+
+```shell
+~/install/bin/icuinfo
 ```
 
 ???
@@ -422,7 +421,7 @@ int main(int argc, const char *argv[]) {
 ```
 --
 
-# `This is ICU 64.2! 😼`
+# `This is ICU 68.1! 😼`
 --
 
 - _but, let’s actually build this_
@@ -441,7 +440,8 @@ make check
 ???
 
 ```shell
-git clone https://github.com/unicode-org/icu-demos.git --reference-if-able /src/icu-demos
+git clone https://github.com/unicode-org/icu-demos.git \
+--reference-if-able /src/icu-demos
 ``
 
 --
@@ -600,8 +600,15 @@ template: hellomsg.cpp
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
-			<version>64.2</version>
+			<version>67.1</version>
 		</dependency>
+```
+???
+
+```
+cd
+git clone https://github.com/unicode-org/icu-demos.git --reference-if-able /src/icu-demos
+mvn compile -DskipTests=true
 ```
 
 ---
@@ -617,6 +624,12 @@ template: hellomsg.cpp
 ```
 
 ### `Hello, World☃`
+
+???
+
+```
+mvn exec:java -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.Hello
+```
 
 ---
 
@@ -637,6 +650,11 @@ template: hellomsg.cpp
 --
 
 - …except for some ICU4J APIs that still use ICU’s `ULocale`
+???
+```
+mvn exec:java \
+ -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.Hello \
+ -Duser.language=es```
 ---
 
 # `BadMessage.properties`
@@ -663,6 +681,11 @@ name: BadMessage.java
             msgArgs.put("population", entry.population());
             System.out.println(m.format(msgArgs));
         }
+```
+???
+```
+mvn exec:java \
+ -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.BadMessage
 ```
 ---
 template: BadMessage.java
@@ -743,6 +766,11 @@ The territory of Bouvet Island has 1 person
 The territory of Brazil has 205,824,000 persons
 ```
 
+???
+```
+mvn exec:java \
+ -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.GoodMessage
+```
 ---
 
 # Units and Currencies
@@ -789,7 +817,8 @@ The room measures 5 μέτρα wide.
 
 # Compact Notation
 
-![:img 5.4B views, 50%](https://snag.gy/gNUbt8.jpg)
+- 👍 **29K** 👎 **1.6K**
+- **12.8M** Followers
 
 Programmatically:
 
@@ -953,7 +982,7 @@ _“It’s too big”_
 ICU 64 Data Build Tool
 
 - Slice data by feature and locale
-- [Read the Docs](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md), and attend Shane's session tomorrow
+- [Read the Docs](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md)
 
 Other Customization
 
@@ -1064,7 +1093,8 @@ layout: false
 
 <hr/>
 
-![:big 150%](Sample Code: [bit.ly/iuc43-icu-samples](https://bit.ly/iuc43-icu-samples))
+
+![:big 150%](Sample Code: [bit.ly/iuc44-icu-samples](https://bit.ly/iuc44-icu-samples))
 
 #### Presenter: Steven Loomis
 
