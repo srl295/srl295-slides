@@ -1093,7 +1093,7 @@ layout: false
 
 ![:big 150%](Sample Code: <https://bit.ly/iuc44-icu>)
 
-.rightmed[![Intl](img/qr.png)]
+.qrightmed[![Intl](img/qr.png)]
 
 #### Presenter: Steven Loomis
 
