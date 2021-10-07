@@ -1,8 +1,8 @@
 layout: true
 
 <div class="lefttxt">Put ICU to Work!</div>
-<div class="bottom">44<sup>th</sup> Internationalization and Unicode Conference • Oct 14<sup>th</sup>, 2020 — 
-<a href="https://srl295.github.io">@srl295</a></div>
+<div class="bottom">45<sup>th</sup> Internationalization and Unicode Conference • Oct ??<sup>th</sup>, 2021 — 
+<a href="https://srl295.github.io">@srl295</a> &amp; Craig Cornelius</div>
 ---
 <!-- _background-image: url(img/node1.png) -->
 class: center, middle, whitedrop
@@ -10,6 +10,7 @@ class: center, middle, whitedrop
 .centersml[![Intl](img/iculogo.png)]
 ## Put ICU to Work!
 
+#### Craig Cornelius
 #### Steven R. Loomis
 ???
 Thanks also to Shane Carr
@@ -1106,4 +1107,4 @@ Have a nice day!
 - thank you also to Shane Carr for past help with this
 presentation!
 
-.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2020-10-14-iuc44-icuwork-s1t3)]
+.bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2021-iuc45-icuwork-t1t3)]
