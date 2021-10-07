@@ -9,7 +9,7 @@ class: center, middle, whitedrop
 
 .centersml[![Intl](img/iculogo.png)]
 ## Put ICU to Work!
- 
+
 #### Steven R. Loomis
 ???
 Thanks also to Shane Carr
@@ -551,7 +551,7 @@ whom + "’s " + what + " is on the " + where
 ---
 name: hellomsg.cpp
 
-# `hellomsg.cpp` 
+# `hellomsg.cpp`
 
 ```c
     const int kArgCount = 1;
@@ -565,7 +565,7 @@ one argument
 template: hellomsg.cpp
 
 ```c
-    MessageFormat msg_en("Hello, {world}", 
+    MessageFormat msg_en("Hello, {world}",
         Locale("en"), status);
     UnicodeString result_en;
     msg_en.format(argnames, arguments, kArgCount, result_en, status);
@@ -643,7 +643,7 @@ mvn exec:java -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.Hello
   System.out.println("Hello, " + world + "\u2603");
 ```
 
-### `Hello, Mundo☃`
+### `Hello, Mundo*`
 --
 
 - use `java.util.Locale`
@@ -719,18 +719,18 @@ The territory of Unknown Region has 0 persons.
  - English: 0 dogs, 1 dog, 2 dogs, 3 dogs, 4 dogs
 --
 
- - Welsh: 0 cŵn, 
+ - Welsh: 0 cŵn,
 ???
 kun
 --
-1 ci, 
+1 ci,
 ???
 ki
 --
-2 gi, 
+2 gi,
 ???
 --
-3 ci, 
+3 ci,
 ???
 --
 4 ci
@@ -748,7 +748,7 @@ ki
 # `GoodMessage.properties`
 
 ```properties
-population={population, plural, 
+population={population, plural,
   one{The territory of {territory} has # person}
   other{The territory of {territory} has # persons}}
 ```
@@ -870,7 +870,7 @@ Sample: `s23_brki.cpp`
 
 
 # Collators (Text Sorting)
- 
+
 - binary comparison inadequate
 - order varies by language (Danish ‘aa…’ follows ‘z…’)
 - need multiple-level collation
@@ -896,7 +896,7 @@ Sample: `s23_brki.cpp`
         Collator col = Collator.getInstance(locale);
         for(final PopulationData.TerritoryEntry entry :
          PopulationData.getTerritoryEntries(locale,
-                new TreeSet<>((o1, o2) 
+                new TreeSet<>((o1, o2)
                 -> col.compare (o1.territoryName(), o2.territoryName())))) {
                     …
 ```
