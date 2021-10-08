@@ -424,7 +424,7 @@ int main(int argc, const char *argv[]) {
 ```
 --
 
-# `This is ICU 68.1! 😼`
+# `This is ICU 69.1! 😼`
 --
 
 - _but, let’s actually build this_
@@ -452,7 +452,7 @@ git clone https://github.com/unicode-org/icu-demos.git \
 ```shell
 $ cd iucsamples/c/s09_test
 $ make check
-This is ICU 68.1! 😼
+This is ICU 69.1! 😼
 everything is OK 🎉
 ```
 --
