@@ -35,6 +35,7 @@ Hacking
 - edit `presentation.md` ( see https://remarkjs.com )
 - `npm run server`  will serve on http://127.0.0.1:1337
 - **while the above server is running**, `npm run pdf` will export to `out.pdf`
+- Note: on my mac I had to do `export PUPPETEER_EXECUTABLE_PATH=/Applications/Chromium.app/Contents/MacOS/Chromium` first
 
 Thanks
 ===

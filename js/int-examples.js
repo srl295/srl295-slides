@@ -21,12 +21,13 @@ var NUM_LOCLIST_PCT = [
     'ar'
 ];
 
-// 
+//
 $(function() {
     function forea(x, y) {
         var a = $(x);
         if(!a || a.length === 0) {
-            console.log('None: ' + x);
+            // Quell noise
+            // console.log('None: ' + x);
         } else {
             for(var k=0;k<x.length;k++) {
                 y(a[k]);
@@ -47,7 +48,7 @@ $(function() {
                     "new Number(2016).toLocaleString('"+loc+"')",
                     "new Number(2016).toLocaleString('"+loc+"',\n {useGrouping: false})"
                 ]));
-            } 
+            }
         });
     };
     doWhat(); // once
@@ -63,7 +64,7 @@ var DATE_LOCLIST = [
     'mt'
 ];
 
-// 
+//
 $(function() {
     function forea(x, y) {
         var a = $(x);
@@ -90,7 +91,7 @@ $(function() {
                 doEval(
                     "new Date().toLocaleTimeString('"+DATE_LOCLIST[n%DATE_LOCLIST.length]+"')\n"
                 ) + '\n'  );
-            } 
+            }
         });
     };
     doWhat(); // once
