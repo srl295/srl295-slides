@@ -626,7 +626,7 @@ mvn compile -DskipTests=true
   System.out.println("Hello, " + world + "\u2603");
 ```
 
-### `Hello, World☃`
+### `Hello, World`☃
 
 ???
 
