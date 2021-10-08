@@ -243,25 +243,25 @@ class: center, middle
 
 I'm using these 2 docker images.
 
-You can run them with:
+You can build them with:
 
 ```shell
-docker run --rm -it srl295/icu-demo:ubuntu
-docker run --rm -it srl295/icu-demo:fedora-j
+docker build https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu -t unicode/icu-build:ubuntu
+docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j -t unicode/icu-build:fedora-j
 ```
 
 ???
 I'm actually going to run:
 
 ```
-docker run --rm -it  -v ${HOME}/.ccache:/home/build/.ccache -v ${HOME}/src:/src:ro srl295/icu-build:ubuntu
+docker run --rm -it  -v ${HOME}/.ccache:/home/build/.ccache -v ${HOME}/src:/src:ro unicode/icu-build:ubuntu
 ```
 
 … so that I can not have to checkout everything over the network.
 ???
 
-docker build https://github.com/unicode-org/icu-docker.git#:dockerfiles/ubuntu -t icu-build:ubuntu
-docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j -t srl295/icu-build:fedora-j
+docker build https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu -t unicode/icu-build:ubuntu
+docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j -t unicode/icu-build:fedora-j
 
 
 ---
@@ -272,6 +272,8 @@ docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:docker
 
 ```shell
 git clone https://github.com/unicode-org/icu.git
+cd icu
+# git checkout … 
 mkdir ~/build
 cd ~/build
 ~/icu/icu4c/source/configure --prefix=${HOME}/install
@@ -601,7 +603,7 @@ template: hellomsg.cpp
 		<dependency>
 			<groupId>com.ibm.icu</groupId>
 			<artifactId>icu4j</artifactId>
-			<version>67.1</version>
+			<version>69.1</version>
 		</dependency>
 ```
 ???
