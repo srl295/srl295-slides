@@ -1,7 +1,7 @@
 layout: true
 
 <div class="lefttxt">Put ICU to Work!</div>
-<div class="bottom">45<sup>th</sup> Internationalization and Unicode Conference • Oct ??<sup>th</sup>, 2021 — 
+<div class="bottom">45<sup>th</sup> Internationalization and Unicode Conference • Oct 13<sup>th</sup>, 2021 — 
 <a href="https://srl295.github.io">@srl295</a> &amp; Craig Cornelius</div>
 ---
 <!-- _background-image: url(img/node1.png) -->
@@ -46,7 +46,7 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 - Significant update about once a year
 --
 
-- 80+ character properties,many multi-valued
+- 80+ character properties, many multi-valued
 --
 
 - Additional standards and geopolitical requirements
@@ -65,7 +65,7 @@ ICU combines up-to-date correctness with real-world performance.
 
 # Unicode covers the world 🌍
 
-- _“Unicode provides a unique number for every character,no matter what the platform,no matter what the program,no matter what the language.”_ [(unicode.org)](http://www.unicode.org/standard/WhatIsUnicode.html)
+- _“Unicode provides a unique number for every character, no matter what the platform, no matter what the program, no matter what the language.”_ [(unicode.org)](http://www.unicode.org/standard/WhatIsUnicode.html)
 
 --
 
@@ -992,7 +992,7 @@ Other Customization
 - Repackage ICU data http://userguide.icu-project.org/icudata
 - Repackage ICU4C Code http://userguide.icu-project.org/packaging
 
- Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
+ Example: `#define UCONFIG_NO_LEGACY_CONVERSION`
  - (Note: removes code but not data)
 
 ---
@@ -1051,7 +1051,7 @@ Other Customization
  - “Neutral” - ISO 8601 - “`2019-04-08`”
 --
 
-- REMEMBER ॳ may not be a letter
+- REMEMBER: ॳ may not be a letter
 ???
 U+0973
 --
