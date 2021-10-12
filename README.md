@@ -1,17 +1,18 @@
-Putting ICU to Work for IUC44, 2020-10-14-icuwork-s1t3
+Putting ICU to Work for IUC44, 2021-iuc45-icuwork-t1t3
 ###
 
-Presentation slides for the 44th [Internationalization and Unicode® Conference](https://www.unicodeconference.org/)
+Presentation slides for the 45th [Internationalization and Unicode® Conference](https://www.unicodeconference.org/)
 
 Author
 ===
 
 [Steven R. Loomis—@srl295](https://github.com/srl295)
+[Craig Cornelius-@sven-oly](https://github.com/sven-oly)
 
 Sample Code
 ===
 
-- [https://github.com/unicode-org/icu-demos.git](https://github.com/unicode-org/icu-demos/tree/iuc44/iucsamples) (`iuc44` tag)
+- [https://github.com/unicode-org/icu-demos.git](https://github.com/unicode-org/icu-demos/tree/main/iucsamples)
 
 Docker images used: (source code in this repo + <https://github.com/unicode-org/icu-docker.git>)
 ```shell
@@ -40,6 +41,3 @@ Hacking
 Thanks
 ===
 Past editor: Shane Carr
-
------
-[`bit.ly/iuc44-icu`](http://bit.ly/iuc44-icu) redirects here.
