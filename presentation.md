@@ -164,7 +164,7 @@ The easiest way to build ICU is to let someone else build it.
 
 ---
 
-# [ICU Userguide](http://userguide.icu-project.org)
+# [ICU Userguide](https://unicode-org.github.io/icu/userguide/)
 
 Now in Markdown
 
@@ -179,7 +179,7 @@ Now in Markdown
 > - [C `UFormattedValue`](https://unicode-org.github.io/icu-docs/apidoc/released/icu4c/globals_u.html) -- search for "resultAsValue"
 > - [Java `FormattedValue`](https://unicode-org.github.io/icu-docs/apidoc/released/icu4j/com/ibm/icu/text/FormattedValue.html)
 
-[Fork and edit](https://github.com/unicode-org/icu/blob/master/docs/userguide/format_parse/formatted_value.md)
+[Fork and edit](https://github.com/unicode-org/icu/blob/main/docs/userguide/format_parse/formatted_value.md)
 
 ???
 General topics and specific articles.
@@ -206,7 +206,7 @@ Shows which APIs were added, promoted, to stable, etc. in each release.
 
 # Mailing Lists
 
-##  http://site.icu-project.org/contacts
+##  https://icu.unicode.org/contacts
 - `icu-support` – Technical support and discussion
 - `icu-design` – API proposal discussion
 - `icu-announce` – Low-volume announcements list
@@ -215,18 +215,18 @@ At least subscribe to the announce list so you can be notified of new ICU versio
 
 ---
 
-# [Issues (Jira)](http://site.icu-project.org/bugs)
+# [Issues (Jira)](https://icu.unicode.org/bugs)
 
 .centerbig[![Bug Report](img/bugrpt.png)]
 ---
 
 # Contributing
 
-1. Open an [issue](http://site.icu-project.org/bugs) in Jira
+1. Open an [issue](https://icu.unicode.org/bugs) in Jira
 2. [Fork](https://github.com/unicode-org/icu/fork) the ICU repo
 3. Write and test your code
 4. Commit your change to your fork
-5. Open a [new Pull Request](https://github.com/unicode-org/icu/pull/new/master)
+5. Open a [new Pull Request](https://github.com/unicode-org/icu/pull/new/main)
 6. Sign the CLA when prompted [![CLA assistant](https://cla-assistant.io/readme/badge/unicode-org/icu)](https://cla-assistant.io/unicode-org/icu)
 --
 
@@ -646,7 +646,7 @@ mvn exec:java -Dexec.mainClass=com.ibm.us.srloomis.demo.icu2work.Hello
   System.out.println("Hello, " + world + "\u2603");
 ```
 
-### `Hello, Mundo*`
+### `Hello, Mundo`☃
 --
 
 - use `java.util.Locale`
@@ -985,7 +985,7 @@ _“It’s too big”_
 ICU 64 Data Build Tool
 
 - Slice data by feature and locale
-- [Read the Docs](https://github.com/unicode-org/icu/blob/master/docs/userguide/icu_data/buildtool.md)
+- [Read the Docs](https://github.com/unicode-org/icu/blob/main/docs/userguide/icu_data/buildtool.md)
 
 Other Customization
 
@@ -1022,10 +1022,10 @@ Other Customization
 ## Locale data
 --
 
-- cultural data can be updated based on community voting
+- May change due to geopolitical and cultural shifts
 --
 
-- cultural format results are not suited for serializing data, application protocols and storage
+- Not suited for serializing, application protocols, or storage
 
 ---
 
@@ -1090,23 +1090,23 @@ layout: false
 
 ### Action for You: Join our mailing lists!
 
-![:big 150%](http://site.icu-project.org/contacts)
+![:big 150%](https://icu.unicode.org/contacts)
 
 ---
 
-![:big 150%](Sample Code: <https://bit.ly/iuc44-icu>)
+![:big](Sample Code: <https://bit.ly/iucsamples>)
 
 .qrightmed[![Intl](img/qr.png)]
 
-#### Presenter: Steven Loomis
+#### Steven Loomis
 
 - Social: @srl295
 - Web site: [git.io/srl295](https://git.io/srl295)
 - Email: `srl295`<i>@</i>`gmail.com`
 
+#### Craig Cornelius
+
 Have a nice day!
 
-- thank you also to Shane Carr for past help with this
-presentation!
 
 .bottom[made with [remark.js](http://remarkjs.com) • fork me on [GitHub](https://github.com/srl295/srl295-slides/tree/2021-iuc45-icuwork-t1t3)]
