@@ -246,8 +246,10 @@ I'm using these 2 docker images.
 You can build them with:
 
 ```shell
-docker build https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu -t unicode/icu-build:ubuntu
-docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j -t unicode/icu-build:fedora-j
+docker build https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu \
+ -t unicode/icu-build:ubuntu
+docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j \
+ -t unicode/icu-build:fedora-j
 ```
 
 ???
@@ -284,9 +286,9 @@ make -j2 install
 config
 
 ```shell
-export PATH=${PATH}:${HOME}/install/bin/:${HOME}/install/sbin
-export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${HOME}/install/lib/pkgconfig
-export LD_LIBRARY_PATH=${PATH}:${HOME}/install/lib
+export PATH=$PATH:$HOME/install/bin/:$HOME/install/sbin
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/install/lib/pkgconfig
+export LD_LIBRARY_PATH=$PATH:$HOME/install/lib
 ```
 
 test it out
@@ -588,7 +590,7 @@ template: hellomsg.cpp
     ASSERT_OK(status);
     std::cout << "es: " << result_es << std::endl;
 ```
-### `es: ¡Hola, Mundo!`
+### es: ¡Hola, Mundo!
 
 ---
 
