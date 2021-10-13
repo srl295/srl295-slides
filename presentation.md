@@ -35,18 +35,18 @@ Topics include: Installation (C++ libraries, Java .jar files, Java SPI for JDK i
 
 --
 
-- 3,639 pages (core+charts)
+- almost 4,000 pages (core+charts)
 --
  + Annexes
 --
 
-- More than 143,000 characters
+- More than 144,000 characters
 --
 
 - Significant update about once a year
 --
 
-- 80+ character properties, many multi-valued
+- 80+ character properties
 --
 
 - Additional standards and geopolitical requirements
@@ -246,9 +246,11 @@ I'm using these 2 docker images.
 You can build them with:
 
 ```shell
-docker build https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu \
+docker build \
+ https://github.com/unicode-org/icu-docker.git#main:dockerfiles/ubuntu \
  -t unicode/icu-build:ubuntu
-docker build https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j \
+docker build \
+ https://github.com/unicode-org/icu-docker.git#icu4j-coverity:dockerfiles/fedora-j \
  -t unicode/icu-build:fedora-j
 ```
 
@@ -286,9 +288,9 @@ make -j2 install
 config
 
 ```shell
-export PATH=$PATH:$HOME/install/bin/:$HOME/install/sbin
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/install/lib/pkgconfig
-export LD_LIBRARY_PATH=$PATH:$HOME/install/lib
+export PATH=${PATH}:${HOME}/install/bin/:${HOME}/install/sbin
+export PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${HOME}/install/lib/pkgconfig
+export LD_LIBRARY_PATH=${PATH}:${HOME}/install/lib
 ```
 
 test it out
